@@ -10,14 +10,20 @@ export default function Home() {
   return (
     <div className={inter.className}
 
-      onClick={() => {
-        handleAddFolder('child1child2child', "a5afedd3-e981-40f2-92be-ee55b7608585")
-      }
 
-      }
     >
       {JSON.stringify(storedFolderData)}
 
+
+      <div
+        style={{
+          margin: 10
+        }}
+        onClick={() => {
+          handleAddFolder('child2child1child2', "2ebfd769-69c1-4883-bc7b-130767242e84")
+        }
+
+        }>Add</div>
     </div>
   )
 }

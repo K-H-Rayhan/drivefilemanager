@@ -3,14 +3,14 @@ import useLocalStorage, { FolderTree } from "@/hooks/useLocalStorage";
 
 type HandleTree = {
     storedFolderData: FolderTree[],
-    handleAddFolder: (name: string, id: string) => void,
+    handleAddFolder: (name: string, parentId: string) => void,
 }
 
 type ADDFOLDERACTION = {
     type: "ADD_FOLDER";
     payload: {
         name: string,
-        id: string,
+        parentId: string,
     };
 
 };
@@ -23,16 +23,20 @@ type HandleTreeAction = ADDFOLDERACTION | INITACTION
 
 type AddNode = {
     name: string,
-    id: string,
+    parentId: string,
 }
+
+const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
 const addNode = (data: AddNode, initData: FolderTree[]): any => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
-        if (newData[i].id == data.id) {
+        // If parentId found and slug doesn't exist on that child add item
+        const slug = generateSlug(data.name)
+        if (newData[i].id == data.parentId && !newData[i].children.some(item => item.slug == slug)) {
             newData[i].children.push({
                 name: data.name,
-                slug: data.name.replace(/\s/g, "-").toLowerCase(),
+                slug: slug,
                 id: self.crypto.randomUUID(),
                 children: [],
             })
@@ -52,20 +56,18 @@ const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): Fold
         case "ADD_FOLDER":
             return addNode({
                 name: action.payload.name,
-                id: action.payload.id,
+                parentId: action.payload.parentId,
             }, storedFolderData)
         default:
             return storedFolderData;
     }
 };
 
-
-
 const useHandleTree = (): HandleTree => {
     const [storedValue, setStoredValue] = useLocalStorage("tree")
     const [storedFolderData, dispatch] = useReducer(reducer, []);
 
-    // Initialize the state with the stored value from localStorage
+    // Initialize the state with the stored value from localStorage using useeffect to avoid the warning
     useEffect(() => {
         dispatch({
             type: "INIT",
@@ -76,17 +78,16 @@ const useHandleTree = (): HandleTree => {
     // Update the stored value when the state changes to keep the localStorage in sync
     useEffect(() => {
         setStoredValue(storedFolderData);
-        // console.log(storedFolderData, "storedFolderData");
     }, [storedFolderData]);
 
     // Add a new folder to the tree 
-    const handleAddFolder = (name: string, id: string) => {
+    const handleAddFolder = (name: string, parentId: string) => {
         dispatch({
             type: "ADD_FOLDER",
             payload:
             {
                 name: name,
-                id: id,
+                parentId: parentId,
             }
         });
     };
