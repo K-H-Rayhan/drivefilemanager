@@ -15,9 +15,9 @@ export type FolderTree = {
 
 const initialTreeValue: FolderTree[] = [
     {
-        name: "Home",
-        slug: "/",
-        id: 'home',
+        name: "root",
+        slug: "",
+        id: 'root',
         children: [],
     }
 ]
