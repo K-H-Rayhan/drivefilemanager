@@ -75,6 +75,11 @@ type AddNode = {
     parentId: string,
 }
 
+type EditNode = {
+    name: string,
+    id: string,
+}
+
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
 
@@ -94,6 +99,30 @@ const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
         }
         if (newData[i].children.length > 0) {
             addNode(data, newData[i].children)
+        }
+    }
+    return newData
+}
+
+// If delete node id found filter the item and return new array
+const editNode = (data: EditNode, initData: FolderTree[]): FolderTree[] => {
+    const newData = [...initData]
+    for (let i = 0; i < newData.length; i++) {
+        const findElementIndex = newData[i].children.findIndex(item => item.id == data.id)
+        if (findElementIndex >= 0) {
+            const slug = generateSlug(data.name)
+            if (!newData[i].children.some(item => item.slug == slug)) {
+                newData[i].children[findElementIndex] = {
+                    name: data.name,
+                    slug: slug,
+                    id: data.id,
+                    children: newData[i].children[findElementIndex].children,
+                }
+                return newData
+            }
+        }
+        if (newData[i].children.length > 0) {
+            editNode(data, newData[i].children)
         }
     }
     return newData
@@ -122,6 +151,11 @@ const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): Fold
             return addNode({
                 name: action.payload.name,
                 parentId: action.payload.parentId,
+            }, storedFolderData)
+        case "EDIT_FOLDER":
+            return editNode({
+                name: action.payload.name,
+                id: action.payload.id,
             }, storedFolderData)
         case "DELETE_FOLDER":
             return deleteNode(action.payload.id, storedFolderData)
