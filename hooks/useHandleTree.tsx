@@ -83,18 +83,21 @@ type EditNode = {
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
 
-// If parentId found and slug doesn't exist on that child add item
+// Add node
 const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
-        const slug = generateSlug(data.name)
-        if (newData[i].id == data.parentId && !newData[i].children.some(item => item.slug == slug)) {
-            newData[i].children.push({
-                name: data.name,
-                slug: slug,
-                id: self.crypto.randomUUID(),
-                children: [],
-            })
+        // If parent id found
+        if (newData[i].id == data.parentId) {
+            const slug = generateSlug(data.name)
+            // If slug doesn't exist on that child add item
+            if (newData[i].children.some(item => item.slug == slug))
+                newData[i].children.push({
+                    name: data.name,
+                    slug: slug,
+                    id: self.crypto.randomUUID(),
+                    children: [],
+                })
             return newData
         }
         if (newData[i].children.length > 0) {
@@ -104,13 +107,16 @@ const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
     return newData
 }
 
-// If delete node id found filter the item and return new array
+//  Edit node
 const editNode = (data: EditNode, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
+        //  Find index of element
         const findElementIndex = newData[i].children.findIndex(item => item.id == data.id)
+        // If element found
         if (findElementIndex >= 0) {
             const slug = generateSlug(data.name)
+            // If slug doesn't exist on that child allow edit item with that slug
             if (!newData[i].children.some(item => item.slug == slug)) {
                 newData[i].children[findElementIndex] = {
                     name: data.name,
@@ -128,11 +134,13 @@ const editNode = (data: EditNode, initData: FolderTree[]): FolderTree[] => {
     return newData
 }
 
-// If delete node id found filter the item and return new array
+// Delete node
 const deleteNode = (id: string, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
+        // If delete node id found
         if (newData[i].children.some(item => item.id == id)) {
+            // Filter out that node
             newData[i].children = newData[i].children.filter(item => item.id != id)
             return newData
         }
