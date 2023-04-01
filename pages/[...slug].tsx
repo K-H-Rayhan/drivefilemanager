@@ -7,47 +7,12 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
-function TreeMenu({ storedFolderData, depthLevel, route }: any) {
-    const router = useRouter();
-    let paths = router.asPath.split('/');
-    const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        if (paths[depthLevel] == storedFolderData.slug) {
-            setOpen(true)
-        }
-    }, [router.asPath])
-
-    return (
-        <div
-            style={{
-                margin: 10
-            }}
-        >
-            <div
-                style={{
-                    margin: 10
-                }}
-            >
-                <div onClick={() => {
-                    // setOpen(!open)
-                    router.push(route)
-                }
-                }>{storedFolderData.name}</div>
-                {open && storedFolderData?.children?.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={depthLevel + 1} route={route + "/" + e.slug} />)}
-            </div>
-        </div>
-    )
-}
-
 export default function Home() {
     const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useHandleTree()
     const addRef = useRef(null);
 
     return (
         <div className={inter.className}
-
-
         >
             {JSON.stringify(storedFolderData, null, 0)}
             <div
@@ -76,8 +41,6 @@ export default function Home() {
                     handleEditFolder("prothomBaccharprothomBaccha", "7f340d6a-2702-4843-b582-8668a3c7545c")
                 }
                 }>Edit</div>
-            {storedFolderData.map(e => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} />)}
-
         </div>
     )
 }

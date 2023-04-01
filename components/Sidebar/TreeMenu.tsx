@@ -34,3 +34,5 @@ function TreeMenu({ storedFolderData, depthLevel, route }: any) {
         </div>
     )
 }
+
+export default TreeMenu
