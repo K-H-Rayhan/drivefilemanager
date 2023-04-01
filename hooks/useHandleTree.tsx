@@ -12,7 +12,6 @@ type ADDFOLDERACTION = {
         name: string,
         parentId: string,
     };
-
 };
 type INITACTION = {
     type: "INIT";
@@ -28,7 +27,7 @@ type AddNode = {
 
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
-const addNode = (data: AddNode, initData: FolderTree[]): any => {
+const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
         // If parentId found and slug doesn't exist on that child add item
@@ -92,17 +91,26 @@ const useHandleTree = (): HandleTree => {
         });
     };
 
+    // Edit a folder from the tree
+    const handleEditFolder = (name: string, id: string) => {
+    };
+
+    // Delete a folder from the tree
+    const handleDeleteFolder = (id: string) => {
+    };
+
     // Add a new file to the tree
     const handleAddFile = (name: string) => {
         let id = self.crypto.randomUUID();
     };
-
-    // Delete a folder from the tree
-    const handleDeleteFolder = (slug: string) => {
+    // Edit a new file to the tree, parent id to make it efficient
+    const handleEditFile = (name: string, parentId: string) => {
     };
 
-    // Delete a file from the tree
-    const handleDeleteFile = (id: File) => {
+
+    // Delete a file from the tree, parent id to make it efficient
+    const handleDeleteFile = (id: File, parentId: string) => {
+
     };
 
 
