@@ -8,27 +8,31 @@ export type File = {
 export type FolderTree = {
     name: string;
     slug: string;
-    children?: FolderTree[];
+    id: string;
+    children: FolderTree[];
     files?: File[];
 };
 
-
+const initialTreeValue: FolderTree[] = [
+    {
+        name: "Home",
+        slug: "/",
+        id: 'home',
+        children: [],
+    }
+]
 
 const useLocalStorage = (key: string): [FolderTree[], (newValue: FolderTree[]) => void] => {
-    const [storedValue, setStoredValue] = useState<FolderTree[]>([]);
-
-    useEffect(() => {
-        setStoredValue(getData)
-    }, []);
-
-    function getData() {
+    const [storedValue, setStoredValue] = useState<FolderTree[]>(() => {
+        if (typeof window === "undefined") return initialTreeValue;
         try {
             const item = localStorage.getItem(key);
-            return item ? JSON.parse(item) : [];
+            return item ? JSON.parse(item) : initialTreeValue;
         } catch (error) {
-            return [];
+            return initialTreeValue;
         }
-    }
+    });
+
 
     const handleNewValue = (newValue: FolderTree[]) => {
         setStoredValue(newValue);
