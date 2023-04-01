@@ -91,7 +91,7 @@ const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
         if (newData[i].id == data.parentId) {
             const slug = generateSlug(data.name)
             // If slug doesn't exist on that child add item
-            if (newData[i].children.some(item => item.slug == slug))
+            if (!newData[i].children.some(item => item.slug == slug))
                 newData[i].children.push({
                     name: data.name,
                     slug: slug,

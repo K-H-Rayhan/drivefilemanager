@@ -1,24 +1,58 @@
 import useHandleTree from '@/hooks/useHandleTree'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { Open_Sans } from 'next/font/google'
+import { MutableRefObject, useRef, useState } from 'react'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
+function TreeMenu({ storedFolderData }: any) {
+  const [open, setOpen] = useState(false)
+  console.log(storedFolderData);
+
+  return (
+    <div
+      style={{
+        margin: 10
+      }}
+    >
+      {storedFolderData?.map(e => {
+        return (
+          <div
+            style={{
+              margin: 10
+            }}
+          >
+            <div onClick={() => {
+              setOpen(!open)
+            }
+            }>{e.name}</div>
+            {open && <TreeMenu storedFolderData={e.children} />}
+          </div>
+        )
+      }
+      )}
+
+    </div>
+  )
+}
+
 export default function Home() {
   const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useHandleTree()
+  const addRef = useRef(null);
 
   return (
     <div className={inter.className}
 
 
     >
-      {JSON.stringify(storedFolderData, null, 2)}
+      {JSON.stringify(storedFolderData, null, 0)}
       <div
+        ref={addRef}
         style={{
           margin: 10
         }}
         onClick={() => {
-          handleAddFolder('child2', "987d0ade-f2d1-488b-ac5c-924a70428fed")
+          handleAddFolder('heda1', "b595a83f-b678-485d-9c16-7dc607376f98")
         }
 
         }>Add</div>
@@ -27,17 +61,18 @@ export default function Home() {
           margin: 10
         }}
         onClick={() => {
-          handleDeleteFolder("eae6d8db-f645-4884-a8de-c870546d909b")
+          handleDeleteFolder("home")
         }
         }>Delete</div>
       <div
         style={{
-          margin: 10
+          margin: 10,
         }}
         onClick={() => {
-          handleEditFolder("child1Pusd", "f2ca856e-fca2-4e2a-b76a-db72b58e77ae")
+          handleEditFolder("child1", "f2ca856e-fca2-4e2a-b76a-db72b58e77ae")
         }
         }>Edit</div>
+      <TreeMenu storedFolderData={storedFolderData} />
     </div>
   )
 }
