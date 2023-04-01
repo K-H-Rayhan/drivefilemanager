@@ -1,17 +1,7 @@
+import { FolderTree } from "@/types/TreeNodeType";
 import { useEffect, useState } from "react";
 
-export type File = {
-    name: string;
-    id: string;
-};
 
-export type FolderTree = {
-    name: string;
-    slug: string;
-    id: string;
-    children: FolderTree[];
-    files?: File[];
-};
 
 const initialTreeValue: FolderTree[] = [
     {

@@ -1,85 +1,12 @@
 import { useState, useReducer, useEffect } from "react";
-import useLocalStorage, { FolderTree } from "@/hooks/useLocalStorage";
-
-type HandleTree = {
-    storedFolderData: FolderTree[],
-    handleAddFolder: (name: string, parentId: string) => void,
-    handleEditFolder: (name: string, id: string) => void,
-    handleDeleteFolder: (id: string) => void,
-    handleAddFile: (name: string, parentId: string) => void,
-    handleEditFile: (name: string, id: string, parentId: string) => void,
-    handleDeleteFile: (id: string, parentId: string) => void,
-}
-
-type INITACTION = {
-    type: "INIT";
-    payload: FolderTree[];
-};
-
-type ADDFOLDERACTION = {
-    type: "ADD_FOLDER";
-    payload: {
-        name: string,
-        parentId: string,
-    };
-};
-
-type DELETEFOLDER = {
-    type: "DELETE_FOLDER";
-    payload: {
-        id: string,
-    };
-};
-
-type EDITFOLDER = {
-    type: "EDIT_FOLDER";
-    payload: {
-        id: string,
-        name: string,
-    };
-};
-
-type ADDFILEACTION = {
-    type: "ADD_FILE";
-    payload: {
-        name: string,
-        parentId: string,
-    };
-};
-
-type EDITFILE = {
-    type: "EDIT_FILE";
-    payload: {
-        id: string,
-        name: string,
-        parentId: string,
-    };
-};
-
-type DELETEFILE = {
-    type: "DELETE_FILE";
-    payload: {
-        id: string,
-        parentId: string,
-    };
-};
-
-type FOLDEROPTIONS = ADDFOLDERACTION | DELETEFOLDER | EDITFOLDER
-
-type FILEOPTIONS = ADDFILEACTION | DELETEFILE | EDITFILE
-
-type HandleTreeAction = INITACTION | FOLDEROPTIONS | FILEOPTIONS
-
-type AddNode = {
-    name: string,
-    parentId: string,
-}
-
-type EditNode = {
-    name: string,
-    id: string,
-}
-
+import useLocalStorage from "@/hooks/useLocalStorage";
+import {
+    HandleTree,
+    HandleTreeAction,
+    AddNode,
+    EditNode
+} from '@/types/HandleTreeType'
+import { FolderTree } from "@/types/TreeNodeType";
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
 
