@@ -24,7 +24,7 @@ function TreeMenu({ storedFolderData, depthLevel, route }: any) {
     return (
         <div
             style={{
-                margin: 10
+                marginLeft: depthLevel * 10,
             }}
         >
             <TreeMenuButton

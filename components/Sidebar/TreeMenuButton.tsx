@@ -1,9 +1,10 @@
 import { FolderTree } from '@/types/TreeNodeType'
-import React from 'react'
+import React, { useContext } from 'react'
 import { IoMdArrowDropright } from 'react-icons/io'
 import { FiHardDrive } from 'react-icons/fi'
 import { MdFolder } from 'react-icons/md'
 import Link from 'next/link'
+import { ResultContext } from '@/context/ResultsContext'
 
 type Props = {
     open: boolean,
@@ -15,11 +16,15 @@ type Props = {
 
 function TreeMenuButton({ open, toggleOpen, route, depthLevel, storedFolderData
 }: Props) {
+    const { results } = useContext(ResultContext)    
     return (
         <div
             style={{
                 display: 'flex',
                 alignItems: 'center',
+                backgroundColor: results?.id == storedFolderData.id ? '#C2E7FF' : 'unset',
+                padding: depthLevel > 0 ? '7px 20px' : '10px 10px',
+                borderRadius: '1.5rem',
             }}
         >
             {open ? <IoMdArrowDropright style={{
@@ -30,18 +35,16 @@ function TreeMenuButton({ open, toggleOpen, route, depthLevel, storedFolderData
                 <IoMdArrowDropright onClick={() => {
                     toggleOpen()
                 }} />}
-            <div style={{
-                paddingRight: "14px",
-                display: 'flex',
-                alignItems: 'center',
-            }}>
-                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder />}
-            </div>
             <Link href={route == "" ? "/" : route} style={{
                 all: 'unset',
                 cursor: 'pointer',
                 fontSize: '13px',
+                gap: "12px",
+                display: 'flex',
+                alignItems: 'center',
             }}>
+
+                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20}/>}
                 {storedFolderData.name}
             </Link>
         </div>

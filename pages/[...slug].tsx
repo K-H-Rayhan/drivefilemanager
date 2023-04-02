@@ -1,3 +1,4 @@
+import Folders from '@/components/Ui/Folders'
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
 import useLocalStorage from '@/hooks/useLocalStorage'
@@ -17,10 +18,7 @@ export default function Home() {
         <div className={inter.className}
         >
             {/* {JSON.stringify(results, null, 0)} */}
-
-            {results?.children.map(e => (<div key={e.id}>
-                {e.name}
-            </div>))}
+            {results?.children.length > 0 && <Folders folders={results} />}
             {/* <div
                 ref={addRef}
                 style={{
