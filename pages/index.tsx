@@ -1,15 +1,16 @@
+import { MenuContext } from '@/context/MenuContext'
 import useHandleTree from '@/hooks/useHandleTree'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { Open_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
-    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useHandleTree()
+    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
     const addRef = useRef(null);
-
+    
     return (
         <div className={inter.className}
 
@@ -22,7 +23,7 @@ export default function Home() {
                     margin: 10
                 }}
                 onClick={() => {
-                    handleAddFolder(`${Math.floor(Math.random() * 1000)}`, "2400c27d-2826-4c3b-a18c-531fac17d6eb")
+                    handleAddFolder(`${Math.floor(Math.random() * 1000)}`, "8b1f30f2-398c-4529-9cc3-0fba29df8870")
                 }
 
                 }>Add</div>

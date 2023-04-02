@@ -1,11 +1,14 @@
 import Layout from '@/components/Layout/Layout'
+import { MenuProvider } from '@/context/MenuContext'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <MenuProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </MenuProvider>
   )
 }

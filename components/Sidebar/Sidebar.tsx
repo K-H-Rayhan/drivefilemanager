@@ -1,5 +1,5 @@
 import useHandleTree from '@/hooks/useHandleTree'
-import React from 'react'
+import React, { useContext } from 'react'
 import { BsTrash, BsPeople, BsStar } from 'react-icons/bs'
 import { BiTimeFive } from 'react-icons/bi'
 import { AiOutlineCloud } from 'react-icons/ai'
@@ -9,11 +9,13 @@ import { FolderTree } from '@/types/TreeNodeType'
 import AddNewButton from './AddNewButton'
 import OtherMenus from './OtherMenus'
 import ShowStorageStat from './ShowStorageStat'
+import { MenuContext } from '@/context/MenuContext'
 
 type Props = {}
 
 function Sidebar({ }: Props) {
-    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useHandleTree()
+    const { storedFolderData } = useContext(MenuContext)
+
     return (
         <div style={{
             minWidth: '257px',
