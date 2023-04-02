@@ -15,7 +15,7 @@ export default function Home() {
 
 
         >
-            {JSON.stringify(storedFolderData, null, 0)}
+            {/* {JSON.stringify(storedFolderData, null, 0)}
             <div
                 ref={addRef}
                 style={{
@@ -41,7 +41,7 @@ export default function Home() {
                 onClick={() => {
                     handleEditFolder("prothomBaccharprothomBaccha", "7f340d6a-2702-4843-b582-8668a3c7545c")
                 }
-                }>Edit</div>
+                }>Edit</div> */}
 
         </div>
     )

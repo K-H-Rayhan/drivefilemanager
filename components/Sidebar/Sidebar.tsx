@@ -3,7 +3,7 @@ import React from 'react'
 import { BsTrash, BsPeople, BsStar } from 'react-icons/bs'
 import { BiTimeFive } from 'react-icons/bi'
 import { AiOutlineCloud } from 'react-icons/ai'
-import { GrPersonalComputer } from 'react-icons/gr'
+import { HiOutlineComputerDesktop } from 'react-icons/hi2'
 import TreeMenu from './TreeMenu'
 import { FolderTree } from '@/types/TreeNodeType'
 import AddNewButton from './AddNewButton'
@@ -40,7 +40,7 @@ export default Sidebar
 const otherMenus = [
     {
         name: "Computers",
-        icon: GrPersonalComputer,
+        icon: HiOutlineComputerDesktop,
     },
     {
         name: "Shared with me",
