@@ -1,14 +1,14 @@
-import useHandleTree from '@/hooks/useHandleTree'
+import { MenuContext } from '@/context/MenuContext'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { FolderTree } from '@/types/TreeNodeType'
 import { Open_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
-    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useHandleTree()
+    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
     const addRef = useRef(null);
 
     return (

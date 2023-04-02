@@ -1,5 +1,4 @@
 import { MenuContext } from '@/context/MenuContext'
-import useHandleTree from '@/hooks/useHandleTree'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { Open_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
