@@ -29,7 +29,7 @@ function TreeMenu({ storedFolderData, depthLevel, route }: any) {
                     router.push(route)
                 }
                 }>{storedFolderData.name}</div>
-                {open && storedFolderData?.children?.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={depthLevel + 1} route={route + "/" + e.slug} />)}
+                {open && storedFolderData?.children?.map((e: FolderTree) => <TreeMenu storedFolderData={e} key={e.id} depthLevel={depthLevel + 1} route={route + "/" + e.slug} />)}
             </div>
         </div>
     )

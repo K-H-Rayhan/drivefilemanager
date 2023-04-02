@@ -2,6 +2,7 @@ import Head from 'next/head'
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import { Open_Sans } from 'next/font/google'
+import Header from '../Header/Header'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -13,15 +14,24 @@ function Layout({
     children
 }: Props) {
     return (
-        <div className={font.className}>
+        <div className={`${font.className}`}>
             <Head>
                 <title>I Love Nextjs</title>
                 <meta name="description" content="Nextjs is so good" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Sidebar />
-            <div className=' flex justify-end  w-full'>
-                <div className=' flex flex-col w-[calc(100%-65px)] md:w-full'>
+            <Header />
+            <div style={{
+                display: 'flex',
+            }}>
+                <Sidebar />
+                <div className='' style={{
+                    backgroundColor: '#fff',
+                    minHeight: '100vh',
+                    width: '100%',
+                    borderTopLeftRadius: '15px',
+                    padding: '20px',
+                }}>
                     {children}
                 </div>
             </div>
