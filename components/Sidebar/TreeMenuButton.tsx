@@ -40,6 +40,7 @@ function TreeMenuButton({ open, toggleOpen, route, depthLevel, storedFolderData
             <Link href={route == "" ? "/" : route} style={{
                 all: 'unset',
                 cursor: 'pointer',
+                fontSize: '13px',
             }}>
                 {storedFolderData.name}
             </Link>

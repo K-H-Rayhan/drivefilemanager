@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const initialTreeValue: FolderTree[] = [
     {
-        name: "root",
+        name: "My Drive",
         slug: "",
         id: 'root',
         children: [],

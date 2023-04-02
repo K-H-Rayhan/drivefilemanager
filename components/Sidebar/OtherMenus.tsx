@@ -21,7 +21,6 @@ function OtherMenus({
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                color: '#000',
             }}
         >
             {showarrow && <IoMdArrowDropright style={{

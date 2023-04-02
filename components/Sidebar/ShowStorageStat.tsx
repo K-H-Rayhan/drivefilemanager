@@ -11,13 +11,13 @@ function ShowStorageStat({ }: Props) {
                 width: '175px',
                 height: '4px',
                 backgroundColor: '#1d1d1d1f',
-                borderRadius: '1.5rem',
+                borderRadius: '3rem',
             }}>
                 <div style={{
                     width: '50%',
                     height: '100%',
                     backgroundColor: '#1a73e8',
-                    borderRadius: '1.5rem',
+                    borderRadius: '3rem',
                 }}></div>
             </div>
 
@@ -30,7 +30,7 @@ function ShowStorageStat({ }: Props) {
                 fontSize: '13px',
             }}>
                 <div>
-                    0 GB of 15 GB used
+                    7.5 GB of 15 GB used
                 </div>
             </div>
             <div style={{
