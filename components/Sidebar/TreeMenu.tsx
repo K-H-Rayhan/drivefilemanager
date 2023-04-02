@@ -30,6 +30,7 @@ function TreeMenu({ storedFolderData, depthLevel, route }: any) {
             <TreeMenuButton
                 depthLevel={depthLevel}
                 route={route}
+                router={router}
                 storedFolderData={storedFolderData}
                 open={open} toggleOpen={() => {
                     setOpen(!open)

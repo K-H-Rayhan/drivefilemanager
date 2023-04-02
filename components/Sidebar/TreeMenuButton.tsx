@@ -5,6 +5,7 @@ import { FiHardDrive } from 'react-icons/fi'
 import { MdFolder } from 'react-icons/md'
 import Link from 'next/link'
 import { ResultContext } from '@/context/ResultsContext'
+import { useRouter } from 'next/router'
 
 type Props = {
     open: boolean,
@@ -12,17 +13,19 @@ type Props = {
     depthLevel: number,
     storedFolderData: FolderTree,
     route: string,
+    router: any
 }
 
-function TreeMenuButton({ open, toggleOpen, route, depthLevel, storedFolderData
+function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFolderData
 }: Props) {
-    const { results } = useContext(ResultContext)    
+    const { results } = useContext(ResultContext)
+
     return (
         <div
             style={{
                 display: 'flex',
                 alignItems: 'center',
-                backgroundColor: results?.id == storedFolderData.id ? '#C2E7FF' : 'unset',
+                backgroundColor: ((results?.id == storedFolderData.id) && (router.asPath != "/")) || (router.asPath == "/" && storedFolderData.id == "root") ? '#C2E7FF' : 'unset',
                 padding: depthLevel > 0 ? '7px 20px' : '10px 10px',
                 borderRadius: '1.5rem',
             }}
@@ -44,7 +47,7 @@ function TreeMenuButton({ open, toggleOpen, route, depthLevel, storedFolderData
                 alignItems: 'center',
             }}>
 
-                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20}/>}
+                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} />}
                 {storedFolderData.name}
             </Link>
         </div>
