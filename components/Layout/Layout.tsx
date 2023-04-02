@@ -3,6 +3,7 @@ import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import { Open_Sans } from 'next/font/google'
 import Header from '../Header/Header'
+import BreadCrumb from './BreadCrumb'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -32,6 +33,7 @@ function Layout({
                     borderTopLeftRadius: '15px',
                     padding: '20px',
                 }}>
+                    <BreadCrumb />
                     {children}
                 </div>
             </div>

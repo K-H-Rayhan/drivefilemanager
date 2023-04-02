@@ -2,7 +2,7 @@ import useHandleTree from '@/hooks/useHandleTree'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { Open_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
-import { MutableRefObject, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
 
 const inter = Open_Sans({ subsets: ['latin'] })
 
@@ -22,7 +22,7 @@ export default function Home() {
                     margin: 10
                 }}
                 onClick={() => {
-                    handleAddFolder('asdasd', "home")
+                    handleAddFolder(`${Math.floor(Math.random() * 1000)}}`, "9887c13d-8d04-40da-8b0d-47b9225766db")
                 }
 
                 }>Add</div>

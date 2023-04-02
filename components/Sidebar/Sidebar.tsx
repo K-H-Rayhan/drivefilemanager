@@ -12,7 +12,7 @@ function Sidebar({ }: Props) {
             minWidth: '257px',
         }}>
             {storedFolderData.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}
-
+            
         </div>
     )
 }
