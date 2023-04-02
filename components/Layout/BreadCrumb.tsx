@@ -10,11 +10,11 @@ function capitalizeFirstLetter(string: string) {
 function BreadCrumb({ }: Props) {
     const router = useRouter()
     const paths = [...router.asPath.split("/").map(e => capitalizeFirstLetter(e))]
-    paths[0] = "/"
+    paths[0] = "My Drive"
     return (
         <div>
-            {paths.map(e => <span key={e}>
-                &nbsp;/&nbsp; {e}
+            {paths.map(e => <span key={Math.random()}>
+                {e}
             </span>)}
         </div>
     )

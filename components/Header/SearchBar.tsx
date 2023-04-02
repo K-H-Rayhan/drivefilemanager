@@ -24,9 +24,9 @@ function SearchBar({ }: Props) {
                     alignItems: 'center',
                 }}>
                     <IconButton icon={MdOutlineSearch} />
-                    <div>
-                        Search in Drive
-                    </div>
+                    <input type="text" placeholder='Search in Drive' style={{
+                        all: 'unset',
+                    }} />
                 </div>
                 <IconButton icon={MdOutlineTune} />
             </div>
