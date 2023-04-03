@@ -4,10 +4,14 @@ import { MdFolder } from 'react-icons/md'
 
 type Props = {
     folder: FolderTree
+    handleFolderClick: (id: string) => void
+    handleFolderSelect: (id: string) => void
 }
 
 function FolderButton({
-    folder
+    folder,
+    handleFolderClick,
+    handleFolderSelect
 }: Props) {
     return (
         <div style={{

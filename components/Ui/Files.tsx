@@ -4,11 +4,19 @@ import FolderButton from './FolderButton'
 import FileButton from './FileButton'
 
 type Props = {
-    data: File[]
+    data: File[],
+    handleFileClick: (
+        id: string
+    ) => void,
+    handleFileSelect: (
+        id: string
+    ) => void,
 }
 
 function Files({
-    data
+    data,
+    handleFileClick,
+    handleFileSelect
 }: Props) {
     return (
         <div style={{
@@ -29,7 +37,10 @@ function Files({
                 {data?.map(e => (
 
                     <div key={e.id}>
-                        <FileButton file={e} />
+                        <FileButton
+                            handleFileClick={handleFileClick}
+                            handleFileSelect={handleFileSelect}
+                            file={e} />
                     </div>
                 ))}
             </div>

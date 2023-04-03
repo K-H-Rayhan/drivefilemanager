@@ -6,10 +6,18 @@ import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 
 type Props = {
     file: File
+    handleFileClick: (
+        id: string
+    ) => void,
+    handleFileSelect: (
+        id: string
+    ) => void,
 }
 
 function FileButton({
-    file
+    file,
+    handleFileClick,
+    handleFileSelect
 }: Props) {
 
     const getIcon = (type: ActionType) => {

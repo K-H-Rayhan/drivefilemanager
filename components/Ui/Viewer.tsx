@@ -19,14 +19,35 @@ function Viewer({ }: Props) {
     useEffect(() => {
         setLoading(false)
     }, [])
+
+
+    const handleFolderClick = (id: string) => {
+
+    }
+    const handleFolderSelect = (id: string) => {
+
+    }
+    const handleFileClick = (id: string) => {
+
+    }
+    const handleFileSelect = (id: string) => {
+
+    }
+
     return (
         <div key={storedFolderData[0] as any} style={{
             height: '100%',
         }}>
             {results.id ? <>
-                <BreadCrumb />
-                {results?.children?.length > 0 && <Folders folders={results?.children} />}
-                {results?.files && results?.files?.length > 0 && <Files data={results.files} />}
+                <>{selected.length > 0 ? <></> : <BreadCrumb />}</>
+                {results?.children?.length > 0 && <Folders folders={results?.children}
+                    handleFolderClick={handleFolderClick}
+                    handleFolderSelect={handleFolderSelect}
+                />}
+                {results?.files && results?.files?.length > 0 && <Files data={results.files}
+                    handleFileClick={handleFileClick}
+                    handleFileSelect={handleFileSelect}
+                />}
                 {results?.children?.length < 1 && (!results?.files || results?.files?.length < 1) && <EmptyDirectory />}
             </> : <>
                 {/* To suppress suppressHydrationWarning */}

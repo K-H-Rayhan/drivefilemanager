@@ -4,10 +4,14 @@ import FolderButton from './FolderButton'
 
 type Props = {
     folders: FolderTree[]
+    handleFolderClick: (id: string) => void
+    handleFolderSelect: (id: string) => void
 }
 
 function Folders({
-    folders
+    folders,
+    handleFolderClick,
+    handleFolderSelect
 }: Props) {
     return (
         <div style={{
@@ -28,7 +32,10 @@ function Folders({
                 {folders?.map(e => (
 
                     <div key={e.id}>
-                        <FolderButton folder={e} />
+                        <FolderButton folder={e}
+                            handleFolderClick={handleFolderClick}
+                            handleFolderSelect={handleFolderSelect}
+                        />
                     </div>
                 ))}
             </div>
