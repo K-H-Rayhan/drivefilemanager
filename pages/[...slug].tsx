@@ -18,7 +18,7 @@ export default function Home() {
         <div className={inter.className}
         >
             {/* {JSON.stringify(results, null, 0)} */}
-            {results?.children.length > 0 && <Folders folders={results} />}
+            {results?.children?.length > 0 && <Folders folders={results} />}
             {/* <div
                 ref={addRef}
                 style={{

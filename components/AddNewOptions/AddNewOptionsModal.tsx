@@ -2,6 +2,7 @@ import React from 'react'
 import { MdOutlineCreateNewFolder, MdUploadFile, MdOutlineKeyboardArrowRight, MdOutlineDriveFolderUpload } from 'react-icons/md'
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 import AddNewOptionsButton from './AddNewOptionsButton'
+import CreateNewModal, { ActionType } from '../Ui/CreateNewModal'
 
 type Props = {
     open: boolean,
@@ -11,35 +12,14 @@ type Props = {
 type OptionButtonProps = {
     name: string,
     icon?: React.FC<{ size: number }>
-    action?: string
+    action?: ActionType
 }
 function AddNewOptionsModal({
     open,
     handleClose,
     backdrop = false
 }: Props) {
-
-    const fireAction = (action: string) => {
-        switch (action) {
-            case 'CREATE_FOLDER':
-                console.log('CREATE_FOLDER')
-                break;
-            case 'CREATE_DOC':
-                console.log('CREATE_DOC')
-                break;
-            case 'CREATE_SHEET':
-                console.log('CREATE_SHEET')
-                break;
-            case 'CREATE_SLIDE':
-                console.log('CREATE_SLIDE')
-                break;
-            case 'CREATE_FORM':
-                console.log('CREATE_FORM')
-                break;
-            default:
-                break;
-        }
-    }
+    const [actionType, setActionType] = React.useState<ActionType | null>(null)
     return (
         <>{open && <div
         >
@@ -93,7 +73,7 @@ function AddNewOptionsModal({
                                                 item={item}
                                                 i={i}
                                                 handleClick={() => {
-                                                    item.action && fireAction(item.action)
+                                                    item.action && setActionType(item.action)
                                                 }}
                                             />
                                         )
@@ -106,53 +86,62 @@ function AddNewOptionsModal({
 
                 }
             </div>
-        </div>}</>
+        </div>}
+            <CreateNewModal action={actionType} handleClose={() => [
+                setActionType(null)
+            ]} />
+        </>
     )
 }
-
 export default AddNewOptionsModal
 
-const options = [
-    [
-        {
-            name: "New folder",
-            icon: MdOutlineCreateNewFolder,
-            action: "CREATE_FOLDER"
-        }
-    ],
-    [
-        {
-            name: "File upload",
-            icon: MdUploadFile
-        },
-        {
-            name: "Folder upload",
-            icon: MdOutlineDriveFolderUpload
-        }
-    ],
-    [
-        {
-            name: "Gooogle Docs",
-            icon: FcAddressBook,
-            action: "CREATE_DOC"
-        },
-        {
-            name: "Gooogle Sheets",
-            icon: FcDataSheet,
-            action: "CREATE_SHEET"
-        },
-        {
-            name: "Gooogle Slides",
-            icon: FcPicture,
-            action: "CREATE_SLIDE"
-        },
-        {
-            name: "Gooogle Forms",
-            icon: FcNews,
-            action: "CREATE_FORM"
-        },
-        {
-            name: "More"
-        },
-    ],
-]
+const options:
+    {
+        name: string,
+        icon?: React.FC<{ size: number }>
+        action?: ActionType
+    }[][]
+    = [
+        [
+            {
+                name: "New folder",
+                icon: MdOutlineCreateNewFolder,
+                action: ActionType.CREATE_FOLDER
+            }
+        ],
+        [
+            {
+                name: "File upload",
+                icon: MdUploadFile
+            },
+            {
+                name: "Folder upload",
+                icon: MdOutlineDriveFolderUpload
+            }
+        ],
+        [
+            {
+                name: "Gooogle Docs",
+                icon: FcAddressBook,
+                action: ActionType.CREATE_DOC
+            },
+            {
+                name: "Gooogle Sheets",
+                icon: FcDataSheet,
+                action: ActionType.CREATE_SHEET
+            },
+            {
+                name: "Gooogle Slides",
+                icon: FcPicture,
+                action: ActionType.CREATE_SLIDE
+            },
+            {
+                name: "Gooogle Forms",
+                icon: FcNews,
+                action: ActionType.CREATE_FORM
+            },
+            {
+                name: "More"
+            },
+        ],
+    ]

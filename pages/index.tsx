@@ -19,7 +19,7 @@ export default function Home() {
 
 
         >
-            {storedFolderData[0]?.children.length > 0 && <Folders folders={storedFolderData[0]} />}
+            {storedFolderData[0]?.children?.length > 0 && <Folders folders={storedFolderData[0]} />}
 
             {/* {JSON.stringify(storedFolderData, null, 0)} */}
             {/* <div
