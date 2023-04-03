@@ -30,14 +30,19 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                 borderRadius: '1.5rem',
             }}
         >
-            {open ? <IoMdArrowDropright style={{
-                transform: 'rotate(90deg)'
-            }} onClick={() => {
-                toggleOpen()
-            }} /> :
-                <IoMdArrowDropright onClick={() => {
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+            }}>
+                {open ? <IoMdArrowDropright style={{
+                    transform: 'rotate(90deg)'
+                }} onClick={() => {
                     toggleOpen()
-                }} />}
+                }} /> :
+                    <IoMdArrowDropright onClick={() => {
+                        toggleOpen()
+                    }} />}
+            </div>
             <Link href={route == "" ? "/" : route} style={{
                 all: 'unset',
                 cursor: 'pointer',
@@ -46,8 +51,9 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                 display: 'flex',
                 alignItems: 'center',
             }}>
-
-                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} />}
+                <div>
+                    {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} />}
+                </div>
                 {storedFolderData.name}
             </Link>
         </div>
