@@ -1,6 +1,6 @@
 import React from 'react'
 import { GrAdd } from 'react-icons/gr'
-import AddNewOptions from '../Ui/AddNewOptions'
+import AddNewOptions from '../AddNewOptions/AddNewOptions'
 
 type Props = {}
 
