@@ -229,8 +229,6 @@ const MenuProvider = ({ children }: Props) => {
 
     // Add a new file to the tree
     const handleAddFile = (name: string, type: ActionType, parentId: string) => {
-        console.log("ekbar");
-
         dispatch({
             type: "ADD_FILE",
             payload:
