@@ -87,9 +87,10 @@ function AddNewOptionsModal({
                 }
             </div>
         </div>}
-            <CreateNewModal action={actionType} handleClose={() => [
-                setActionType(null)
-            ]} />
+            {actionType && <CreateNewModal action={actionType} handleClose={() => {
+                setActionType(null);
+                handleClose();
+            }} />}
         </>
     )
 }
