@@ -1,4 +1,6 @@
-import React from 'react'
+import { MenuContext } from '@/context/MenuContext'
+import { ResultContext } from '@/context/ResultsContext'
+import React, { useContext } from 'react'
 
 export enum ActionType {
     CREATE_FOLDER = 'CREATE_FOLDER',
@@ -22,6 +24,27 @@ function CreateNewModal({
     handleClose,
     backdrop = true,
 }: Props) {
+    const { handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
+    const { results } = useContext(ResultContext)
+    const [folderName, setFolderName] = React.useState<string>('')
+    const modAction = (actionName: ActionType) => {
+        switch (actionName) {
+            case ActionType.CREATE_FOLDER:
+                folderName.length > 0 && handleAddFolder(folderName, results.id)
+                return 'folder'
+            case ActionType.CREATE_DOC:
+                return 'document'
+            case ActionType.CREATE_SHEET:
+                return 'spreadsheet'
+            case ActionType.CREATE_SLIDE:
+                return 'presentation'
+            case ActionType.CREATE_FORM:
+                return 'form'
+            default:
+                return 'folder'
+        }
+    }
+
     return (
         <>{action && <div
             onClick={() => {
@@ -70,9 +93,14 @@ function CreateNewModal({
                         fontSize: '24px',
                         fontWeight: 400,
                         color: '#1d1d1d',
-                    }}>New folder</div>
+                    }}>New {action.split("_")[1].toLowerCase()}</div>
                     <input type="text"
-                        placeholder='Folder name'
+                        required
+                        value={folderName}
+                        onChange={(e) => {
+                            setFolderName(e.target.value)
+                        }}
+                        placeholder={`Untitled ${action.split("_")[1].toLowerCase()}`}
                         style={{
                             width: '100%',
                             padding: '10px',
@@ -99,7 +127,7 @@ function CreateNewModal({
                             }}>Cancel</div>
                         <div
                             onClick={() => {
-
+                                modAction(action)
                             }}
                             style={{
                                 padding: '8px',

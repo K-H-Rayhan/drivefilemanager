@@ -10,12 +10,12 @@ import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
+    const { storedFolderData } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
-    const addRef = useRef(null);
-
-
     return (
-        <div className={inter.className}
+        <div
+            key={storedFolderData[0]?.id}
+            className={inter.className}
         >
             {/* {JSON.stringify(results, null, 0)} */}
             {results?.children?.length > 0 && <Folders folders={results} />}
