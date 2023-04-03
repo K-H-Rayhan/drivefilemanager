@@ -1,6 +1,9 @@
+import { ActionType } from "@/components/Ui/CreateNewModal";
+
 export type File = {
     name: string;
     id: string;
+    type: ActionType;
 };
 
 export type FolderTree = {

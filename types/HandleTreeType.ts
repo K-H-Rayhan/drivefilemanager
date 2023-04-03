@@ -1,3 +1,4 @@
+import { ActionType } from "@/components/Ui/CreateNewModal";
 import { FolderTree } from "./TreeNodeType";
 
 
@@ -6,7 +7,7 @@ export type HandleTree = {
     handleAddFolder: (name: string, parentId: string) => void,
     handleEditFolder: (name: string, id: string) => void,
     handleDeleteFolder: (id: string) => void,
-    handleAddFile: (name: string, parentId: string) => void,
+    handleAddFile: (name: string, type: ActionType, parentId: string) => void,
     handleEditFile: (name: string, id: string, parentId: string) => void,
     handleDeleteFile: (id: string, parentId: string) => void,
 }
@@ -44,6 +45,7 @@ export type ADDFILEACTION = {
     payload: {
         name: string,
         parentId: string,
+        type: ActionType,
     };
 };
 
@@ -73,6 +75,11 @@ export type HandleTreeAction = INITACTION | FOLDEROPTIONS | FILEOPTIONS
 export type AddNode = {
     name: string,
     parentId: string,
+}
+export type AddFile = {
+    name: string,
+    parentId: string,
+    type: ActionType,
 }
 
 export type EditNode = {

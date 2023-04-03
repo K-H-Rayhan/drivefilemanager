@@ -14,7 +14,6 @@ export default function Home() {
     const { results } = useContext(ResultContext)
     return (
         <div
-            key={storedFolderData[0]?.id}
             className={inter.className}
         >
             {/* {JSON.stringify(results, null, 0)} */}

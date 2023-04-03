@@ -24,22 +24,23 @@ function CreateNewModal({
     handleClose,
     backdrop = true,
 }: Props) {
-    const { handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
+    const { handleAddFolder, handleAddFile, handleEditFolder } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
     const [folderName, setFolderName] = React.useState<string>('')
+    console.log(results);
+
     const modAction = (actionName: ActionType) => {
         switch (actionName) {
             case ActionType.CREATE_FOLDER:
-                folderName.length > 0 && handleAddFolder(folderName, results.id)
-                return 'folder'
+                return folderName.length > 0 && handleAddFolder(folderName, results.id)
             case ActionType.CREATE_DOC:
-                return 'document'
+                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_DOC, results.id)
             case ActionType.CREATE_SHEET:
-                return 'spreadsheet'
+                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_SHEET, results.id)
             case ActionType.CREATE_SLIDE:
-                return 'presentation'
+                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_SLIDE, results.id)
             case ActionType.CREATE_FORM:
-                return 'form'
+                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_FORM, results.id)
             default:
                 return 'folder'
         }

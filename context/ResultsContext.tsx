@@ -21,15 +21,15 @@ const ResultContext = createContext<Results>({
     },
     handleResults: () => { }
 });
-
+export const initialResultData = {
+    name: "",
+    slug: "",
+    id: "",
+    children: [],
+    files: []
+}
 const ResultProvider = ({ children }: Props) => {
-    const [results, setResults] = useState<FolderTree>({
-        name: "",
-        slug: "",
-        id: "",
-        children: [],
-        files: []
-    })
+    const [results, setResults] = useState<FolderTree>(initialResultData)
 
     const handleResults = (data: FolderTree) => {
         setResults(data)

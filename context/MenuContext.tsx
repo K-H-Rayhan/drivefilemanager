@@ -4,9 +4,11 @@ import {
     HandleTree,
     HandleTreeAction,
     AddNode,
-    EditNode
+    EditNode,
+    AddFile
 } from '@/types/HandleTreeType'
 import { FolderTree } from "@/types/TreeNodeType";
+import { ActionType } from "@/components/Ui/CreateNewModal";
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase()
 
 
@@ -77,6 +79,59 @@ const deleteNode = (id: string, initData: FolderTree[]): FolderTree[] => {
     }
     return newData
 }
+// Add file to node
+const addFile = (data: AddFile, initData: FolderTree[]): FolderTree[] => {
+    const newData = [...initData]
+    for (let i = 0; i < newData.length; i++) {
+        // If parent id found
+        if (newData[i].id == data.parentId) {
+            // Files emtpy array if not exist
+            newData[i]["files"] ? newData[i]["files"] : newData[i]["files"] = []
+            newData[i].files?.push({
+                name: data.name,
+                type: data.type,
+                id: self.crypto.randomUUID(),
+            })
+            return newData
+        }
+        if (newData[i].children.length > 0) {
+            addFile(data, newData[i].children)
+        }
+    }
+    return newData
+}
+// Edit file from node
+const editFile = (id: string, initData: FolderTree[]): FolderTree[] => {
+    const newData = [...initData]
+    for (let i = 0; i < newData.length; i++) {
+        // If delete node id found
+        if (newData[i].children.some(item => item.id == id)) {
+            // Filter out that node
+            newData[i].children = newData[i].children.filter(item => item.id != id)
+            return newData
+        }
+        if (newData[i].children.length > 0) {
+            editFile(id, newData[i].children)
+        }
+    }
+    return newData
+}
+// Delete file from node
+const deleteFile = (id: string, initData: FolderTree[]): FolderTree[] => {
+    const newData = [...initData]
+    for (let i = 0; i < newData.length; i++) {
+        // If delete node id found
+        if (newData[i].children.some(item => item.id == id)) {
+            // Filter out that node
+            newData[i].children = newData[i].children.filter(item => item.id != id)
+            return newData
+        }
+        if (newData[i].children.length > 0) {
+            deleteFile(id, newData[i].children)
+        }
+    }
+    return newData
+}
 
 const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): FolderTree[] => {
     switch (action.type) {
@@ -94,6 +149,12 @@ const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): Fold
             }, storedFolderData)
         case "DELETE_FOLDER":
             return deleteNode(action.payload.id, storedFolderData)
+        case "ADD_FILE":
+            return addFile(action.payload, storedFolderData)
+        // case "EDIT_FILE":
+        //     return editFile(action.payload, storedFolderData)
+        // case "DELETE_FILE":
+        //     return deleteFile(action.payload, storedFolderData)
         default:
             return storedFolderData;
     }
@@ -167,13 +228,16 @@ const MenuProvider = ({ children }: Props) => {
     };
 
     // Add a new file to the tree
-    const handleAddFile = (name: string, parentId: string) => {
+    const handleAddFile = (name: string, type: ActionType, parentId: string) => {
+        console.log("ekbar");
+
         dispatch({
             type: "ADD_FILE",
             payload:
             {
                 name: name,
                 parentId: parentId,
+                type: type
             }
         });
     };
