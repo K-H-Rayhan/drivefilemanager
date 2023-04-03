@@ -1,4 +1,6 @@
+import Folders from '@/components/Ui/Folders'
 import { MenuContext } from '@/context/MenuContext'
+import { ResultContext } from '@/context/ResultsContext'
 import useLocalStorage from '@/hooks/useLocalStorage'
 import { Open_Sans } from 'next/font/google'
 import { useRouter } from 'next/router'
@@ -7,16 +9,20 @@ import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
-    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
     const addRef = useRef(null);
-    
+    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
+
+
+
     return (
         <div className={inter.className}
 
 
         >
-            {JSON.stringify(storedFolderData, null, 0)}
-            <div
+            {storedFolderData[0]?.children.length > 0 && <Folders folders={storedFolderData[0]} />}
+
+            {/* {JSON.stringify(storedFolderData, null, 0)} */}
+            {/* <div
                 ref={addRef}
                 style={{
                     margin: 10
@@ -41,7 +47,7 @@ export default function Home() {
                 onClick={() => {
                     handleEditFolder("prothomBaccharprothomBaccha", "7f340d6a-2702-4843-b582-8668a3c7545c")
                 }
-                }>Edit</div>
+                }>Edit</div> */}
 
         </div>
     )

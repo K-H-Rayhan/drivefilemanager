@@ -13,7 +13,7 @@ function OtherOptions({ }: Props) {
             marginLeft: 'auto',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '4px',
         }}>
             <IconButton icon={MdOutlineOfflinePin} />
             <IconButton icon={AiOutlineQuestionCircle} size={23} />

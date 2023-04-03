@@ -25,6 +25,7 @@ function Sidebar({ }: Props) {
             {storedFolderData.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}
             <div style={{
                 marginLeft: '10px',
+                marginTop: '10px',
                 gap: '15px',
                 display: 'flex',
                 flexDirection: 'column',

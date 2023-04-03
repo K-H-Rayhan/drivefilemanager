@@ -10,6 +10,7 @@ function Header({ }: Props) {
             display: 'flex',
             padding: '8px',
             height: '64px',
+            width: '100%',
         }}>
             <div style={{
                 padding: '16px',

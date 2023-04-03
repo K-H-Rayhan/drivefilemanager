@@ -8,10 +8,11 @@ function SearchBar({ }: Props) {
     return (
         <div style={{
             display: 'flex',
-            width: '58%',
+            width: '48%',
             backgroundColor: '#edf2fc',
             borderRadius: '1.5rem',
             alignItems: 'center',
+            paddingInline: "5px"
         }}>
             <div style={{
                 display: 'flex',
