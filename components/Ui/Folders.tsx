@@ -3,7 +3,7 @@ import React from 'react'
 import FolderButton from './FolderButton'
 
 type Props = {
-    folders: FolderTree
+    folders: FolderTree[]
 }
 
 function Folders({
@@ -13,7 +13,7 @@ function Folders({
         <div style={{
         }}>
             <div style={{
-                marginBlock: 10,
+                marginBlock: "16px 16px",
                 fontSize: 14,
                 color: '#1d1d1d',
             }}>
@@ -25,7 +25,7 @@ function Folders({
                 gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
                 gap: 15,
             }}>
-                {folders?.children.map(e => (
+                {folders?.map(e => (
 
                     <div key={e.id}>
                         <FolderButton folder={e} />

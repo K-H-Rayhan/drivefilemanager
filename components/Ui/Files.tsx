@@ -1,9 +1,10 @@
-import { FolderTree } from '@/types/TreeNodeType'
+import { File, FolderTree } from '@/types/TreeNodeType'
 import React from 'react'
 import FolderButton from './FolderButton'
+import FileButton from './FileButton'
 
 type Props = {
-    data: FolderTree
+    data: File[]
 }
 
 function Files({
@@ -13,7 +14,7 @@ function Files({
         <div style={{
         }}>
             <div style={{
-                marginBlock: 10,
+                marginBlock: "16px 16px",
                 fontSize: 14,
                 color: '#1d1d1d',
             }}>
@@ -25,10 +26,10 @@ function Files({
                 gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
                 gap: 15,
             }}>
-                {data?.files?.map(e => (
+                {data?.map(e => (
 
                     <div key={e.id}>
-                        {e.name}
+                        <FileButton file={e} />
                     </div>
                 ))}
             </div>

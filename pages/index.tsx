@@ -1,4 +1,5 @@
 import Folders from '@/components/Ui/Folders'
+import Viewer from '@/components/Ui/Viewer'
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
 import useLocalStorage from '@/hooks/useLocalStorage'
@@ -9,17 +10,14 @@ import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react
 const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
-    const addRef = useRef(null);
-    const { storedFolderData, handleAddFolder, handleDeleteFolder, handleEditFolder } = useContext(MenuContext)
-
-
+    const { results } = useContext(ResultContext)
 
     return (
         <div className={inter.className}
-
-
         >
-            {storedFolderData[0]?.children?.length > 0 && <Folders folders={storedFolderData[0]} />}
+            <Viewer />
+
+            {/* {results?.children?.length > 0 && <Folders folders={results} />} */}
 
             {/* {JSON.stringify(storedFolderData, null, 0)} */}
             {/* <div

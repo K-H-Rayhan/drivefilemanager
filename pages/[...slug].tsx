@@ -1,4 +1,6 @@
+import Files from '@/components/Ui/Files'
 import Folders from '@/components/Ui/Folders'
+import Viewer from '@/components/Ui/Viewer'
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
 import useLocalStorage from '@/hooks/useLocalStorage'
@@ -11,13 +13,13 @@ const inter = Open_Sans({ subsets: ['latin'] })
 
 export default function Home() {
     const { storedFolderData } = useContext(MenuContext)
-    const { results } = useContext(ResultContext)
     return (
         <div
             className={inter.className}
         >
+            <Viewer />
             {/* {JSON.stringify(results, null, 0)} */}
-            {results?.children?.length > 0 && <Folders folders={results} />}
+     
             {/* <div
                 ref={addRef}
                 style={{
