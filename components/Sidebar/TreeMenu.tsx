@@ -14,7 +14,7 @@ function TreeMenu({ storedFolderData, depthLevel, route }: any) {
     useEffect(() => {
         if (paths[depthLevel] == storedFolderData.slug) {
             // Results are sent to the parent component
-            if (depthLevel == paths.length - 1) {
+            if (depthLevel == paths.length - 1 || (router.pathname == "/" && router.isReady)) {
                 handleResults(storedFolderData);
             }
             setOpen(true)
