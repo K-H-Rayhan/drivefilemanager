@@ -1,26 +1,13 @@
-import Folders from '@/components/Ui/Folders'
-import Viewer from '@/components/Ui/Viewer'
-import { MenuContext } from '@/context/MenuContext'
-import { ResultContext } from '@/context/ResultsContext'
-import useLocalStorage from '@/hooks/useLocalStorage'
-import { Open_Sans } from 'next/font/google'
-import { useRouter } from 'next/router'
-import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
-
-const inter = Open_Sans({ subsets: ['latin'] })
+import Viewer from "@/components/Ui/Viewer";
 
 export default function Home() {
-    const { results } = useContext(ResultContext)
+    return (<Viewer />)
+}
 
-    return (
-        <div className={inter.className}
-        >
-            <Viewer />
+{/* {results?.children?.length > 0 && <Folders folders={results} />} */ }
 
-            {/* {results?.children?.length > 0 && <Folders folders={results} />} */}
-
-            {/* {JSON.stringify(storedFolderData, null, 0)} */}
-            {/* <div
+{/* {JSON.stringify(storedFolderData, null, 0)} */ }
+{/* <div
                 ref={addRef}
                 style={{
                     margin: 10
@@ -46,7 +33,3 @@ export default function Home() {
                     handleEditFolder("prothomBaccharprothomBaccha", "7f340d6a-2702-4843-b582-8668a3c7545c")
                 }
                 }>Edit</div> */}
-
-        </div>
-    )
-}
