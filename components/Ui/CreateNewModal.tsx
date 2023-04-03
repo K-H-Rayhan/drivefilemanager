@@ -1,6 +1,6 @@
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 export enum ActionType {
     CREATE_FOLDER = 'CREATE_FOLDER',
@@ -28,7 +28,13 @@ function CreateNewModal({
     const { results } = useContext(ResultContext)
     const [folderName, setFolderName] = React.useState<string>('')
     const inputRef = React.useRef<HTMLInputElement>(null)
-    inputRef.current?.focus()
+
+    useEffect(() => {
+        inputRef.current?.focus()
+        return () => {
+            setFolderName('')
+        }
+    }, [])
 
     const modAction = (actionName: ActionType) => {
         switch (actionName) {
