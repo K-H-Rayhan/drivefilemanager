@@ -33,7 +33,6 @@ function Layout({
                     borderTopLeftRadius: '15px',
                     padding: '20px',
                 }}>
-                    <BreadCrumb />
                     {children}
                 </div>
             </div>
