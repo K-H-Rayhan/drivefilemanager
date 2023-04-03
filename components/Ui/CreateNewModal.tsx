@@ -24,33 +24,49 @@ function CreateNewModal({
     handleClose,
     backdrop = true,
 }: Props) {
-    const { handleAddFolder, handleAddFile, handleEditFolder } = useContext(MenuContext)
+    const { handleAddFolder, handleAddFile } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
     const [folderName, setFolderName] = React.useState<string>('')
-    const inputRef = React.useRef<HTMLInputElement>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>
+    const eventEnter = React.useRef<HTMLDivElement>(null)
+
+
 
     useEffect(() => {
         inputRef.current?.focus()
+
+        const handleEnter = (e: KeyboardEvent) => {
+            if (e.key === 'Enter') {
+                e.preventDefault()
+                handleMod()
+            }
+        }
+        eventEnter.current?.addEventListener('keydown', handleEnter)
         return () => {
-            setFolderName('')
+            eventEnter.current?.removeEventListener('keydown', handleEnter)
         }
     }, [])
 
     const modAction = (actionName: ActionType) => {
         switch (actionName) {
             case ActionType.CREATE_FOLDER:
-                return folderName.length > 0 && handleAddFolder(folderName, results.id)
+                return inputRef.current.value.length > 0 && handleAddFolder(inputRef.current.value, results.id)
             case ActionType.CREATE_DOC:
-                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_DOC, results.id)
+                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_DOC, results.id)
             case ActionType.CREATE_SHEET:
-                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_SHEET, results.id)
+                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_SHEET, results.id)
             case ActionType.CREATE_SLIDE:
-                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_SLIDE, results.id)
+                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_SLIDE, results.id)
             case ActionType.CREATE_FORM:
-                return folderName.length > 0 && handleAddFile(folderName, ActionType.CREATE_FORM, results.id)
+                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_FORM, results.id)
             default:
                 return 'folder'
         }
+    }
+
+    const handleMod = () => {
+        modAction(action);
+        handleClose();
     }
 
     return (
@@ -69,14 +85,16 @@ function CreateNewModal({
                     backgroundColor: backdrop ? 'rgba(0,0,0,.2)' : 'transparent',
                 }}
             >
-                <div style={{
-                    position: 'relative',
-                    height: '100%',
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
+                <div
+                    ref={eventEnter}
+                    style={{
+                        position: 'relative',
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
 
                     <div
                         onClick={(e) => {
@@ -107,10 +125,6 @@ function CreateNewModal({
                             ref={inputRef}
                             type="text"
                             required
-                            value={folderName}
-                            onChange={(e) => {
-                                setFolderName(e.target.value)
-                            }}
                             placeholder={`Untitled ${action.split("_")[1].toLowerCase()}`}
                             style={{
                                 width: '100%',
@@ -137,10 +151,7 @@ function CreateNewModal({
                                     cursor: 'pointer',
                                 }}>Cancel</div>
                             <div
-                                onClick={() => {
-                                    modAction(action);
-                                    handleClose();
-                                }}
+                                onClick={handleMod}
                                 style={{
                                     padding: '8px',
                                     border: 'none',
