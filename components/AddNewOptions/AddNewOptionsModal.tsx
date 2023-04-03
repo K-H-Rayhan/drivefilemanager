@@ -69,6 +69,7 @@ function AddNewOptionsModal({
                                     option.map((item: OptionButtonProps, index) => {
                                         return (
                                             <AddNewOptionsButton
+                                                key={index}
                                                 index={index}
                                                 item={item}
                                                 i={i}
