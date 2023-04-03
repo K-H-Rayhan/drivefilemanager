@@ -22,7 +22,7 @@ function Sidebar({ }: Props) {
             paddingInline: '10px',
         }}>
             <AddNewButton />
-            {storedFolderData.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}
+            {storedFolderData?.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}
             <div style={{
                 marginLeft: '10px',
                 marginTop: '10px',
@@ -30,7 +30,7 @@ function Sidebar({ }: Props) {
                 display: 'flex',
                 flexDirection: 'column',
             }}>
-                {otherMenus.map((e, i) => <OtherMenus icon={e.icon} name={e.name} showarrow={i == 0 && true} key={e.name} />)}
+                {otherMenus?.map((e, i) => <OtherMenus icon={e.icon} name={e.name} showarrow={i == 0 && true} key={e.name} />)}
                 <ShowStorageStat />
             </div>
         </div>
