@@ -2,6 +2,7 @@ import { File, FolderTree } from '@/types/TreeNodeType'
 import React from 'react'
 import { FILETYPE, Selected } from '../Ui/Viewer'
 import FilesCardButton from './FilesCardButton'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     data: FolderTree[] | File[],
@@ -25,21 +26,11 @@ function FilesCard({
     type
 }: Props) {
     return (
-        <div style={{
-        }}>
-            <div style={{
-                marginBlock: "16px 16px",
-                fontSize: 14,
-                color: '#1d1d1d',
-            }}>
+        <div className={styles.filesCard}>
+            <div className={styles.filesCardType}>
                 {type}
             </div>
-
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-                gap: 15,
-            }}>
+            <div className={styles.filesCardButtonGrid}>
                 {data?.map((e) => (
                     <div key={e.id}>
                         <FilesCardButton

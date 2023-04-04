@@ -9,7 +9,7 @@ import IconButton from '../Ui/IconButton'
 import FolderOptions from '../Ui/FolderOptions'
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
-
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     file: File | FolderTree
@@ -57,29 +57,16 @@ function FilesCardButton({
                 e.stopPropagation()
                 handleFileClick(file.id, type)
             }}
+            className={styles.filesCardButton}
             style={{
                 backgroundColor: isSelected ? "#C2E7FF" : selecting ? "#E1E5E9" : "#F7F9FC",
-                borderRadius: '0.75rem',
-                display: 'flex',
-                flexDirection: 'column',
                 aspectRatio: type == FILETYPE.FILE ? 1 : "auto",
             }
             }>
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: "space-between",
-                padding: '4px 12px',
-                gap: 8
-            }}>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                }}>
+            <div
+                className={styles.fileCardButtonAlign}>
+                <div className={styles.fileCardButtonIcon}>
                     <div
-                        style={{
-                            paddingRight: '5px'
-                        }}
                         onClick={(e) => {
                             e.stopPropagation()
                             handleFileSelect(file.id, type)
@@ -96,15 +83,7 @@ function FilesCardButton({
                             </>
                             : type == FILETYPE.FOLDER ? <IconButton icon={MdFolder} size={20} /> : <IconButton icon={Icon} size={20} />}
                     </div>
-                    <span style={{
-                        fontSize: 15,
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        display: 'block',
-                        width: '84px',
-                        cursor: 'default'
-                    }}>{file.name}</span>
+                    <span>{file.name}</span>
                 </div>
                 <FolderOptions openFolderOptions={openFolderOptions}
                     handleRemove={() => {
@@ -130,18 +109,11 @@ function FilesCardButton({
                     <IconButton icon={BsThreeDotsVertical} size={16} color={selected.length > 1 ? "#1d1d1d5f" : "#1d1d1d"} />
                 </FolderOptions>
             </div>
-            {type == FILETYPE.FILE && <div style={{
-                flex: 1,
-                padding: '0px 9px 9px 9px',
-            }}>
-                <div style={{
-                    backgroundColor: '#fff',
-                    borderRadius: '0.3rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: '100%',
-                    justifyContent: 'center',
-                }}>
+            {type == FILETYPE.FILE && <div
+                className={styles.filesCardButtonBigIconPadding}
+            >
+                <div
+                    className={styles.filesCardButtonBigIcon}>
                     <Icon size={65} />
                 </div>
             </div>}
