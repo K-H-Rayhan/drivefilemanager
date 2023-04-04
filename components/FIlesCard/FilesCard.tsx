@@ -1,22 +1,28 @@
 import { File, FolderTree } from '@/types/TreeNodeType'
 import React from 'react'
-import FolderButton from './FolderButton'
-import FileButton from './FileButton'
+import { FILETYPE, Selected } from '../Ui/Viewer'
+import FilesCardButton from './FilesCardButton'
 
 type Props = {
-    data: File[],
+    data: FolderTree[] | File[],
     handleFileClick: (
-        id: string
+        id: string,
+        type: FILETYPE
     ) => void,
     handleFileSelect: (
-        id: string
+        id: string,
+        type: FILETYPE
     ) => void,
+    selected: Selected[]
+    type: FILETYPE
 }
 
-function Files({
+function FilesCard({
     data,
     handleFileClick,
-    handleFileSelect
+    handleFileSelect,
+    selected,
+    type
 }: Props) {
     return (
         <div style={{
@@ -26,7 +32,7 @@ function Files({
                 fontSize: 14,
                 color: '#1d1d1d',
             }}>
-                Files
+                {type}
             </div>
 
             <div style={{
@@ -34,10 +40,11 @@ function Files({
                 gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
                 gap: 15,
             }}>
-                {data?.map(e => (
-
+                {data?.map((e) => (
                     <div key={e.id}>
-                        <FileButton
+                        <FilesCardButton
+                            type={type}
+                            selected={selected}
                             handleFileClick={handleFileClick}
                             handleFileSelect={handleFileSelect}
                             file={e} />
@@ -48,4 +55,4 @@ function Files({
     )
 }
 
-export default Files
+export default FilesCard
