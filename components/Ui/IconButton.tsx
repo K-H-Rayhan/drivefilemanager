@@ -12,14 +12,7 @@ type Props = {
 function IconButton({ icon, size = 24, ...otherProps }: Props) {
     const Icon = icon
     return (
-        <div className={styles.iconButton} style={{
-            // borderRadius: "50%",
-            // height: "40px",
-            // width: "40px",
-            // display: "flex",
-            // alignItems: "center",
-            // justifyContent: "center",
-        }}>
+        <div className={styles.iconButton}>
             <Icon size={size}  {
                 ...otherProps
             } />
