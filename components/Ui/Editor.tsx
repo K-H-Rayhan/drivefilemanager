@@ -20,11 +20,13 @@ type Props = {
     selected: Selected[]
     toggleSelectAll: () => void
     allSelected: boolean
+    clearSelected: () => void
 }
 
 function Editor({
     selected,
     allSelected,
+    clearSelected,
     toggleSelectAll
 }: Props) {
     const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext)
@@ -44,6 +46,7 @@ function Editor({
                 console.log("open menu")
                 break;
         }
+        clearSelected()
     }
 
     return (

@@ -30,6 +30,9 @@ function Viewer({ }: Props) {
         setLoading(false)
     }, [])
 
+    useEffect(() => {
+        setSelected([])
+    }, [results])
     const clearSelected = () => {
         setSelected([])
     }
@@ -77,6 +80,7 @@ function Viewer({ }: Props) {
 
                         {selected.length > 0 ? <>
                             <Editor
+                                clearSelected={clearSelected}
                                 selected={selected}
                                 allSelected={allSelected}
                                 toggleSelectAll={toggleSelectAll}
