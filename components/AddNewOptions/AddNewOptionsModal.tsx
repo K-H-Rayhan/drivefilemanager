@@ -3,7 +3,6 @@ import React from "react";
 import {
   MdOutlineCreateNewFolder,
   MdUploadFile,
-  MdOutlineKeyboardArrowRight,
   MdOutlineDriveFolderUpload,
 } from "react-icons/md";
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from "react-icons/fc";

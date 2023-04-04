@@ -6,12 +6,12 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 
 // External imports
 import { File, FolderTree } from "@/types/TreeNodeType";
+import { ResultContext } from "@/context/ResultsContext";
+import { MenuContext } from "@/context/MenuContext";
 import { FILETYPE, Selected } from "../Ui/Viewer";
 import CreateNewModal, { ActionType } from "../Ui/CreateNewModal";
 import IconButton from "../Ui/IconButton";
 import FolderOptions from "../Ui/FolderOptions";
-import { MenuContext } from "@/context/MenuContext";
-import { ResultContext } from "@/context/ResultsContext";
 import styles from "../../styles/Base.module.scss";
 
 type Props = {

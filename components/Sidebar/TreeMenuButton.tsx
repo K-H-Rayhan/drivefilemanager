@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
 import { MdFolder } from "react-icons/md";
 import { FiHardDrive } from "react-icons/fi";
-import { ResultContext } from "@/context/ResultsContext";
 import Link from "next/link";
 
 // External imports
 import { FolderTree } from "@/types/TreeNodeType";
+import { ResultContext } from "@/context/ResultsContext";
 import styles from "../../styles/Base.module.scss";
 
 type Props = {
