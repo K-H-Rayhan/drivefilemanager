@@ -1,17 +1,17 @@
 .viewer {
-    .viewerAlign {
-        display: flex;
-        justify-content: space-between;
+  .viewerAlign {
+    display: flex;
+    justify-content: space-between;
 
-        .viewerBreadCrumbRightIcon {
-            display: flex;
-        }
+    .viewerBreadCrumbRightIcon {
+      display: flex;
     }
+  }
 
-    .viewerGrid {
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        height: calc(100vh - 140px);
-    }
+  .viewerGrid {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: calc(100vh - 140px);
+  }
 }

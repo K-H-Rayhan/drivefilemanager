@@ -1,11 +1,11 @@
 .layout {
-    display: flex;
+  display: flex;
 
-    .content {
-        flex: 1;
-        display: flex;
-        background-color: #fff;
-        border-top-left-radius: 15px;
-        padding: 20px;
-    }
+  .content {
+    flex: 1;
+    display: flex;
+    background-color: #fff;
+    border-top-left-radius: 15px;
+    padding: 20px;
+  }
 }

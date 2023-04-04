@@ -1,33 +1,32 @@
-import React from 'react'
-import AddNewOptionsModal from './AddNewOptionsModal'
-import styles from '../../styles/Base.module.scss'
+import React from "react";
+import AddNewOptionsModal from "./AddNewOptionsModal";
+import styles from "../../styles/Base.module.scss";
 
 type Props = {
-    children: React.ReactNode,
-    backdrop?: boolean
-}
-
-
+  children: React.ReactNode;
+  backdrop?: boolean;
+};
 
 function AddNewOptions({ children, backdrop = false }: Props) {
-    const [show, setShow] = React.useState(false)
+  const [show, setShow] = React.useState(false);
 
-
-
-
-    return (
-        <div
-            className={styles.addNewOptions}
-            onClick={() => {
-                setShow(!show)
-            }}>
-            <div>{children}</div>
-            <AddNewOptionsModal open={show} backdrop={backdrop} handleClose={() => {
-                setShow(false)
-            }} />
-        </div >
-    )
+  return (
+    <div
+      className={styles.addNewOptions}
+      onClick={() => {
+        setShow(!show);
+      }}
+    >
+      <div>{children}</div>
+      <AddNewOptionsModal
+        open={show}
+        backdrop={backdrop}
+        handleClose={() => {
+          setShow(false);
+        }}
+      />
+    </div>
+  );
 }
 
-export default AddNewOptions
-
+export default AddNewOptions;

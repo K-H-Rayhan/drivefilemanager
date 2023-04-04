@@ -1,23 +1,23 @@
 .searchBar {
+  display: flex;
+  width: 48%;
+  background-color: #edf2fc;
+  border-radius: 1.5rem;
+  align-items: center;
+  padding-inline: 5px;
+
+  div {
     display: flex;
-    width: 48%;
-    background-color: #edf2fc;
-    border-radius: 1.5rem;
-    align-items: center;
-    padding-inline: 5px;
+    width: 100%;
+    padding-inline: 4px;
 
     div {
-        display: flex;
-        width: 100%;
-        padding-inline: 4px;
-
-        div {
-            display: flex;
-            align-items: center;
-        }
-
-        input {
-            all: unset;
-        }
+      display: flex;
+      align-items: center;
     }
+
+    input {
+      all: unset;
+    }
+  }
 }

@@ -1,13 +1,18 @@
 import Viewer from "@/components/Ui/Viewer";
 
 export default function Home() {
-    return (<Viewer />)
+  return <Viewer />;
 }
 
-{/* {results?.children?.length > 0 && <Folders folders={results} />} */ }
+{
+  /* {results?.children?.length > 0 && <Folders folders={results} />} */
+}
 
-{/* {JSON.stringify(storedFolderData, null, 0)} */ }
-{/* <div
+{
+  /* {JSON.stringify(storedFolderData, null, 0)} */
+}
+{
+  /* <div
                 ref={addRef}
                 style={{
                     margin: 10
@@ -32,4 +37,5 @@ export default function Home() {
                 onClick={() => {
                     handleEditFolder("prothomBaccharprothomBaccha", "7f340d6a-2702-4843-b582-8668a3c7545c")
                 }
-                }>Edit</div> */}
+                }>Edit</div> */
+}

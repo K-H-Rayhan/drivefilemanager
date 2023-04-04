@@ -1,15 +1,14 @@
 .otherMenus {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    div {
-        padding-right: 14px;
-        display: 'flex';
-        align-items: 'center';
-    }
+  div {
+    padding-right: 14px;
+    display: "flex";
+    align-items: "center";
+  }
 
-    span {
-        font-size: 13px;
-
-    }
+  span {
+    font-size: 13px;
+  }
 }

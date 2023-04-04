@@ -1,13 +1,13 @@
 .filesCard {
-    .filesCardType {
-        margin-block: 16px 16px;
-        font-size: 14;
-        color: #1d1d1d;
-    }
+  .filesCardType {
+    margin-block: 16px 16px;
+    font-size: 14;
+    color: #1d1d1d;
+  }
 
-    .filesCardButtonGrid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
-    }
+  .filesCardButtonGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
 }
