@@ -1,7 +1,10 @@
+// Internal imports
+import React, { useContext, useEffect } from "react";
+
+// External imports
 import { MenuContext } from "@/context/MenuContext";
 import { ResultContext } from "@/context/ResultsContext";
 import { File } from "@/types/TreeNodeType";
-import React, { useContext, useEffect } from "react";
 import styles from "../../styles/Base.module.scss";
 
 export enum ActionType {

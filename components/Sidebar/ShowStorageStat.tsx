@@ -1,5 +1,9 @@
+// Internal imports
 import React from "react";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
+
 type Props = {};
 
 function ShowStorageStat({}: Props) {

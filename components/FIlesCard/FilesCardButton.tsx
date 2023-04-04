@@ -1,10 +1,13 @@
-import { File, FolderTree } from "@/types/TreeNodeType";
+// Internal imports
 import React, { useContext } from "react";
 import { MdFolder, MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
-import { FILETYPE, Selected } from "../Ui/Viewer";
-import CreateNewModal, { ActionType } from "../Ui/CreateNewModal";
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from "react-icons/fc";
 import { BsThreeDotsVertical } from "react-icons/bs";
+
+// External imports
+import { File, FolderTree } from "@/types/TreeNodeType";
+import { FILETYPE, Selected } from "../Ui/Viewer";
+import CreateNewModal, { ActionType } from "../Ui/CreateNewModal";
 import IconButton from "../Ui/IconButton";
 import FolderOptions from "../Ui/FolderOptions";
 import { MenuContext } from "@/context/MenuContext";

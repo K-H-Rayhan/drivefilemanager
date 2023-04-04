@@ -1,17 +1,19 @@
-import { ResultContext } from "@/context/ResultsContext";
+// Internal imports
 import React, { useContext, useEffect, useState } from "react";
-import { MenuContext } from "@/context/MenuContext";
-import BreadCrumb from "../Layout/BreadCrumb";
-import { useRouter } from "next/router";
-import Error from "next/error";
-import EmptyDirectory from "./EmptyDirectory";
-import { FolderTree } from "@/types/TreeNodeType";
-import { FaListAlt } from "react-icons/fa";
 import { MdInfoOutline } from "react-icons/md";
+import Error from "next/error";
+import { FaListAlt } from "react-icons/fa";
+
+// External imports
+import { MenuContext } from "@/context/MenuContext";
+import { ResultContext } from "@/context/ResultsContext";
 import IconButton from "../Ui/IconButton";
+import BreadCrumb from "../Layout/BreadCrumb";
 import FilesCard from "../FIlesCard/FilesCard";
 import Editor from "./Editor";
+import EmptyDirectory from "./EmptyDirectory";
 import styles from "../../styles/Base.module.scss";
+
 type Props = {};
 export enum FILETYPE {
   FOLDER = "Folder",

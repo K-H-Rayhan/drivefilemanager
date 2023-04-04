@@ -1,7 +1,11 @@
+// Internal imports
 import React from "react";
+
+// External imports
 import SearchBar from "./SearchBar";
 import OtherOptions from "./OtherOptions";
 import styles from "../../styles/Base.module.scss";
+
 type Props = {};
 
 function Header({}: Props) {

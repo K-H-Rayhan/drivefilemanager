@@ -1,4 +1,7 @@
+// Internal imports
 import React from "react";
+
+// External imports
 import AddNewOptionsModal from "./AddNewOptionsModal";
 import styles from "../../styles/Base.module.scss";
 

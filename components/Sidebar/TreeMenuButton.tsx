@@ -1,11 +1,13 @@
-import { FolderTree } from "@/types/TreeNodeType";
+// Internal imports
 import React, { useContext } from "react";
 import { IoMdArrowDropright } from "react-icons/io";
-import { FiHardDrive } from "react-icons/fi";
 import { MdFolder } from "react-icons/md";
-import Link from "next/link";
+import { FiHardDrive } from "react-icons/fi";
 import { ResultContext } from "@/context/ResultsContext";
-import { useRouter } from "next/router";
+import Link from "next/link";
+
+// External imports
+import { FolderTree } from "@/types/TreeNodeType";
 import styles from "../../styles/Base.module.scss";
 
 type Props = {

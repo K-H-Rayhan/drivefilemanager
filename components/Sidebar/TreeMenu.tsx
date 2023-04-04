@@ -1,9 +1,12 @@
-import { FolderTree } from "@/types/TreeNodeType";
-import { useRouter } from "next/router";
+// Internal imports
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import TreeMenuButton from "./TreeMenuButton";
+
+// External imports
+import { FolderTree } from "@/types/TreeNodeType";
 import { ResultContext } from "@/context/ResultsContext";
+import TreeMenuButton from "./TreeMenuButton";
 
 function TreeMenu({ storedFolderData, depthLevel, route }: any) {
   const { handleResults } = useContext(ResultContext);

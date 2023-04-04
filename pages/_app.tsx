@@ -1,8 +1,10 @@
-import Layout from "@/components/Layout/Layout";
+// Internal imports
+import type { AppProps } from "next/app";
+// External imports
+import "@/styles/globals.css";
 import { MenuProvider } from "@/context/MenuContext";
 import { ResultProvider } from "@/context/ResultsContext";
-import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import Layout from "@/components/Layout/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

@@ -1,5 +1,8 @@
+// Internal imports
 import React from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
 
 type Props = {

@@ -1,14 +1,17 @@
+// Internal imports
 import React, { useContext } from "react";
 import { BsTrash, BsPeople, BsStar } from "react-icons/bs";
-import { BiTimeFive } from "react-icons/bi";
 import { AiOutlineCloud } from "react-icons/ai";
+import { BiTimeFive } from "react-icons/bi";
 import { HiOutlineComputerDesktop } from "react-icons/hi2";
-import TreeMenu from "./TreeMenu";
+
+// External imports
 import { FolderTree } from "@/types/TreeNodeType";
+import { MenuContext } from "@/context/MenuContext";
+import TreeMenu from "./TreeMenu";
 import AddNewButton from "./AddNewButton";
 import OtherMenus from "./OtherMenus";
 import ShowStorageStat from "./ShowStorageStat";
-import { MenuContext } from "@/context/MenuContext";
 import styles from "../../styles/Base.module.scss";
 
 type Props = {};

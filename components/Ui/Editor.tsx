@@ -1,5 +1,5 @@
+// Internal imports
 import React, { useContext } from "react";
-import { FILETYPE, Selected } from "./Viewer";
 import {
   MdPersonAddAlt,
   MdOutlineFileDownload,
@@ -8,12 +8,14 @@ import {
   MdCheckBox,
   MdOutlineIndeterminateCheckBox,
 } from "react-icons/md";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { HiOutlineTrash } from "react-icons/hi";
-import IconButton from "./IconButton";
+
+// External imports
 import { MenuContext } from "@/context/MenuContext";
 import { ResultContext } from "@/context/ResultsContext";
 import styles from "../../styles/Base.module.scss";
+import { FILETYPE, Selected } from "./Viewer";
+import IconButton from "./IconButton";
 
 type Props = {
   selected: Selected[];

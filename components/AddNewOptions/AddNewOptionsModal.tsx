@@ -1,3 +1,4 @@
+// Internal imports
 import React from "react";
 import {
   MdOutlineCreateNewFolder,
@@ -6,6 +7,8 @@ import {
   MdOutlineDriveFolderUpload,
 } from "react-icons/md";
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from "react-icons/fc";
+
+// External imports
 import AddNewOptionsButton from "./AddNewOptionsButton";
 import CreateNewModal, { ActionType } from "../Ui/CreateNewModal";
 import styles from "../../styles/Base.module.scss";

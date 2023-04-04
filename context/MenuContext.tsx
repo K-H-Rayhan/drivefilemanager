@@ -1,4 +1,7 @@
-import { useState, useReducer, useEffect, createContext } from "react";
+// Internal imports
+import { useReducer, useEffect, createContext } from "react";
+
+// External imports
 import useLocalStorage from "@/hooks/useLocalStorage";
 import {
   HandleTree,

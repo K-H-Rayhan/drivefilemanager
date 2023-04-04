@@ -1,5 +1,8 @@
-import { FolderTree } from "@/types/TreeNodeType";
+// Internal imports
 import { useEffect, useState } from "react";
+
+// External imports
+import { FolderTree } from "@/types/TreeNodeType";
 
 const initialTreeValue: FolderTree[] = [
   {

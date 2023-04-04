@@ -1,5 +1,8 @@
+// Internal imports
 import React from "react";
 import { GrAdd } from "react-icons/gr";
+
+// External imports
 import AddNewOptions from "../AddNewOptions/AddNewOptions";
 import styles from "../../styles/Base.module.scss";
 

@@ -1,9 +1,11 @@
+// Internal imports
 import Head from "next/head";
 import React from "react";
-import Sidebar from "../Sidebar/Sidebar";
 import { Open_Sans } from "next/font/google";
+
+// External imports
+import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
-import BreadCrumb from "./BreadCrumb";
 import styles from "../../styles/Base.module.scss";
 
 const font = Open_Sans({ subsets: ["latin"] });

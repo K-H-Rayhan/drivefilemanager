@@ -1,5 +1,7 @@
+// Internal imports
 import { createContext, useState } from "react";
-import useLocalStorage from "@/hooks/useLocalStorage";
+
+// External imports
 import { FolderTree } from "@/types/TreeNodeType";
 
 type Props = {

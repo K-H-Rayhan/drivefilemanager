@@ -1,4 +1,4 @@
-import Image from "next/image";
+// Internal imports
 import React from "react";
 import {
   FcAddressBook,
@@ -8,6 +8,8 @@ import {
   FcAudioFile,
   FcNook,
 } from "react-icons/fc";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
 
 type Props = {};

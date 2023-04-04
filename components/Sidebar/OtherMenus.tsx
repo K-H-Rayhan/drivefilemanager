@@ -1,5 +1,8 @@
+// Internal imports
 import React from "react";
 import { IoMdArrowDropright } from "react-icons/io";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
 
 type Props = {

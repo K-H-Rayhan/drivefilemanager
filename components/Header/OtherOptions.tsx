@@ -1,10 +1,14 @@
+// Internal imports
 import React from "react";
 import { MdOutlineSettings, MdOutlineOfflinePin } from "react-icons/md";
 import { IoApps } from "react-icons/io5";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
+
+// External imports
 import IconButton from "../Ui/IconButton";
 import styles from "../../styles/Base.module.scss";
+
 type Props = {};
 
 function OtherOptions({}: Props) {

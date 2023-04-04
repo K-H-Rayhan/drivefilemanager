@@ -1,5 +1,8 @@
-import { File, FolderTree } from "@/types/TreeNodeType";
+// Internal imports
 import React from "react";
+
+// External imports
+import { File, FolderTree } from "@/types/TreeNodeType";
 import { FILETYPE, Selected } from "../Ui/Viewer";
 import FilesCardButton from "./FilesCardButton";
 import styles from "../../styles/Base.module.scss";

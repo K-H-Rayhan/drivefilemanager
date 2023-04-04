@@ -1,3 +1,4 @@
+// Internal imports
 import React, { useState } from "react";
 import {
   MdOutlineKeyboardArrowRight,
@@ -14,6 +15,8 @@ import {
 } from "react-icons/md";
 import { RxMove } from "react-icons/rx";
 import { HiOutlineTrash } from "react-icons/hi";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
 
 type Props = {

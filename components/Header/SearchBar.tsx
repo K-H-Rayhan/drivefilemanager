@@ -1,7 +1,11 @@
+// Internal imports
 import React from "react";
 import { MdOutlineSearch, MdOutlineTune } from "react-icons/md";
+
+// External imports
 import IconButton from "../Ui/IconButton";
 import styles from "../../styles/Base.module.scss";
+
 type Props = {};
 
 function SearchBar({}: Props) {

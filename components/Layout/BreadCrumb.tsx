@@ -1,6 +1,9 @@
-import { useRouter } from "next/router";
+// Internal imports
 import React from "react";
+import { useRouter } from "next/router";
 import { RiArrowRightSLine } from "react-icons/ri";
+
+// External imports
 import styles from "../../styles/Base.module.scss";
 
 type Props = {};
