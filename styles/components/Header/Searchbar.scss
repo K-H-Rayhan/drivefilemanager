@@ -20,5 +20,9 @@
 
   input {
     all: unset;
+    padding-left: 8px;
+    &::placeholder {
+      color: #1d1d1d;
+    }
   }
 }
