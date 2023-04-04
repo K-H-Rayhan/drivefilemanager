@@ -49,7 +49,7 @@ function FilesCardButton({
                 handleFileClick(file.id, type)
             }}
             style={{
-                backgroundColor: isSelected ? "#C2E7FF" : "#F7F9FC",
+                backgroundColor: isSelected ? "#C2E7FF" : selecting ? "#E1E5E9" : "#F7F9FC",
                 borderRadius: '0.75rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -62,30 +62,28 @@ function FilesCardButton({
                 padding: '6px 12px',
                 gap: 8
             }}>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '36px',
-                    borderRadius: '50%',
-                    width: '36px',
-                }}>
+                <div
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        handleFileSelect(file.id, type)
+                    }}
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '36px',
+                        borderRadius: '50%',
+                        width: '36px',
+                        cursor: 'pointer',
+                    }}>
                     {selecting || isSelected ?
                         <>
                             {
-                                isSelected ? <MdCheckBox
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        handleFileSelect(file.id, type)
-                                    }}
-                                    size={20}
-                                /> :
-                                    <MdCheckBoxOutlineBlank size={20} onClick={(e) => {
-                                        e.stopPropagation()
-                                        handleFileSelect(file.id, type)
-                                    }} />
+                                isSelected ?
+                                    <MdCheckBox size={20} />
+                                    :
+                                    <MdCheckBoxOutlineBlank size={20} />
                             }
-
                         </>
                         : type == FILETYPE.FOLDER ? <MdFolder size={20} /> : <Icon size={20} />}
                 </div>
