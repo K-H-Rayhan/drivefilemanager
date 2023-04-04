@@ -11,6 +11,7 @@ import { MdInfoOutline } from 'react-icons/md'
 import IconButton from '../Ui/IconButton'
 import FilesCard from '../FIlesCard/FilesCard'
 import Editor from './Editor'
+import styles from '../../styles/Base.module.scss'
 type Props = {}
 export enum FILETYPE {
     FOLDER = "Folder",
@@ -67,17 +68,14 @@ function Viewer({ }: Props) {
     }
     return (
         <div
+            className={styles.viewer}
             onClick={clearSelected}
             key={storedFolderData[0] as any} style={{
                 flex: 1,
             }}>
             {results.id ? <>
                 <>
-                    <div style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                    }}>
-
+                    <div className={styles.viewerAlign}>
                         {selected.length > 0 ? <>
                             <Editor
                                 clearSelected={clearSelected}
@@ -86,20 +84,15 @@ function Viewer({ }: Props) {
                                 toggleSelectAll={toggleSelectAll}
                             />
                         </> : <BreadCrumb />}
-                        <div style={{
-                            display: 'flex',
-                        }}>
+                        <div
+                            className={styles.viewerBreadCrumbRightIcon}
+                        >
                             <IconButton icon={FaListAlt} size={15} />
                             <IconButton icon={MdInfoOutline} size={22} />
                         </div>
                     </div>
                 </>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'auto',
-                    height: 'calc(100vh - 140px)',
-                }}>
+                <div className={styles.viewerGrid}>
                     {results?.children?.length > 0 &&
                         <FilesCard
                             type={FILETYPE.FOLDER}

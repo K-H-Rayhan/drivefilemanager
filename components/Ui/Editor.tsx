@@ -15,6 +15,8 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import IconButton from './IconButton'
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
+import styles from '../../styles/Base.module.scss'
+
 
 type Props = {
     selected: Selected[]
@@ -47,13 +49,7 @@ function Editor({
     }
 
     return (
-        <div style={{
-            minHeight: '40px',
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '8px',
-        }}>
+        <div className={styles.editor}>
             {!allSelected ?
                 <IconButton icon={MdOutlineIndeterminateCheckBox} size={20} onClick={(e) => {
                     e.stopPropagation()

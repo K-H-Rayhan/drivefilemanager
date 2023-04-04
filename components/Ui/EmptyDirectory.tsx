@@ -8,61 +8,44 @@ import {
     FcAudioFile,
     FcNook
 } from 'react-icons/fc'
+import styles from '../../styles/Base.module.scss'
+
+
 type Props = {}
 
 function EmptyDirectory({ }: Props) {
     return (
-        <div style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            textAlign: 'center',
-            display: 'flex',
-            flexDirection: 'column',
-            marginTop: "10%",
-            gap: 13
-        }}>
-
-            <div style={{
-                fontSize: 32,
-                color: "#1F1F1F"
-            }}>A place for all of your files</div>
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 20,
-                color: '#1F1F1F'
-            }}>
+        <div className={styles.emptyDirectory}>
+            <div
+                className={styles.headerText}>
+                A place for all of your files
+            </div>
+            <div
+                className={styles.middleAlign}>
                 <div>
                     <div>Google Docs, Sheets, Slides, and more</div>
-                    <div style={{
-                        float: 'right',
-                        display: 'flex',
-                        gap: 10,
-                        marginTop: 10
-                    }}>{leftIcons.map((e, i) => {
-                        const Icon = e.icon
-                        return <Icon key={i} size={20} />
-                    })}</div>
+                    <div className={styles.leftIcons}>
+                        {leftIcons.map((e, i) => {
+                            const Icon = e.icon
+                            return <Icon key={i} size={20} />
+                        })}
+                    </div>
                 </div>
                 <img src="https://ssl.gstatic.com/docs/doclist/images/empty_state_my_drive.png" width={96} height={96} />
                 <div>
                     <div>Microsoft Office files and hundreds more</div>
 
-                    <div style={{
-                        float: 'left',
-                        display: 'flex',
-                        gap: 10,
-                        marginTop: 10
-                    }}>{rightIcons.map((e, i) => {
-                        const Icon = e.icon
-                        return <Icon key={i} size={20} />
-                    })}</div>
+                    <div className={styles.rightIcons}>
+                        {rightIcons.map((e, i) => {
+                            const Icon = e.icon
+                            return <Icon key={i} size={20} />
+                        })}
+                    </div>
                 </div>
             </div>
-            <div style={{
-                fontSize: 13,
-            }}>Drag files and folders here to add them to Drive</div>
+            <div className={styles.footerText}>
+                Drag files and folders here to add them to Drive
+            </div>
         </div>
     )
 }

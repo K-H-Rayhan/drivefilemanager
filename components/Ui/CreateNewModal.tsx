@@ -2,6 +2,7 @@ import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
 import { File } from '@/types/TreeNodeType'
 import React, { useContext, useEffect } from 'react'
+import styles from '../../styles/Base.module.scss'
 
 export enum ActionType {
     CREATE_FOLDER = 'CREATE_FOLDER',
@@ -80,96 +81,50 @@ function CreateNewModal({
     return (
         <>
             <div
+                className={styles.createNewModal}
                 onClick={() => {
                     handleClose()
                 }}
                 style={{
-                    position: 'fixed',
-                    zIndex: 1,
-                    top: '0',
-                    left: '0',
-                    width: '100%',
-                    height: '100%',
                     backgroundColor: backdrop ? 'rgba(0,0,0,.2)' : 'transparent',
                 }}
             >
                 <div
-                    ref={eventEnter}
-                    style={{
-                        position: 'relative',
-                        height: '100%',
-                        width: '100%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-
+                    className={styles.createNewModalPopup}
+                    ref={eventEnter}>
                     <div
                         onClick={(e) => {
                             e.stopPropagation()
                         }}
-                        style={{
-                            width: '343px',
-                            height: '197px',
-                            padding: "24px",
-                            backgroundColor: '#fff',
-                            borderRadius: '6px',
-                            boxShadow: '0 2px 2px 0 rgba(60,64,67,.2), 0 1px 6px 2px rgba(60,64,67,.1)',
-                            fontWeight: 500,
-                            fontSize: '14px',
-                            color: '#000',
-                            userSelect: 'none',
-                            overflow: 'hidden',
-                            overflowY: 'auto',
-                            cursor: 'pointer',
-                        }}>
-                        <div style={{
-                            marginBottom: '12px',
-                            fontSize: '24px',
-                            fontWeight: 400,
-                            color: '#1d1d1d',
-                        }}>{edit ? "Edit" : "New"} {action.split("_")[1].toLowerCase()}</div>
+                        className={styles.createNewModalBody}>
+                        <div
+                            className={styles.createNewModalTitle}>
+                            {edit ? "Edit" : "New"} {action.split("_")[1].toLowerCase()}
+                        </div>
                         <input
                             ref={inputRef}
                             defaultValue={file?.name}
                             type="text"
                             required
                             placeholder={`Untitled ${action.split("_")[1].toLowerCase()}`}
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                border: '2px solid #0B57D0',
-                                borderRadius: '4px',
-                            }} />
+                            className={styles.createNewModalInput}
+                        />
                         <div style={{
                             display: 'flex',
                             justifyContent: 'flex-end',
                             marginTop: '30px',
                         }}>
                             <div
+                                className={styles.createNewModalButton}
                                 onClick={() => {
                                     handleClose()
-                                }}
-                                style={{
-                                    padding: '8px',
-                                    border: 'none',
-                                    borderRadius: '4px',
-                                    color: '#0B57D0',
-                                    fontWeight: 500,
-                                    fontSize: '14px',
-                                    cursor: 'pointer',
-                                }}>Cancel</div>
-                            <div
-                                onClick={handleMod}
-                                style={{
-                                    padding: '8px',
-                                    border: 'none',
-                                    borderRadius: '4px',
-                                    color: '#0B57D0',
-                                    fontWeight: 500,
-                                    fontSize: '14px',
-                                    cursor: 'pointer',
-                                }}>Create</div>
+                                }}>
+                                Cancel
+                            </div>
+                            <div onClick={handleMod}
+                                className={styles.createNewModalButton}>
+                                Create
+                            </div>
                         </div>
                     </div>
                 </div>

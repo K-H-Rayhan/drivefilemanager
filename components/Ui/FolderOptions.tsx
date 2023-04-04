@@ -14,6 +14,7 @@ import {
 } from 'react-icons/md'
 import { RxMove } from 'react-icons/rx'
 import { HiOutlineTrash } from 'react-icons/hi'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     children: React.ReactNode
@@ -61,9 +62,7 @@ function FolderOptions({
 
             }}
             ref={modalPos}
-            style={{
-                position: 'relative',
-            }}>
+            className={styles.folderOptions}>
             {children}
             <>
                 {openFolderOptions && <div
@@ -71,86 +70,46 @@ function FolderOptions({
                     <div onClick={() => {
                         handleFolderOptions()
                     }}
-                        style={{
-                            position: 'fixed',
-                            top: '0',
-                            left: '0',
-                            width: '100%',
-                            height: '100vh',
-                            backgroundColor: 'transparent',
-                            zIndex: 1,
-                        }}></div>
+                        className={styles.folderOptionsBackground}></div>
                     <div
                         onClick={(e) => {
                             e.stopPropagation()
                         }}
+                        className={styles.folderOptionsModal}
                         style={{
-                            paddingBlock: '8px',
-                            position: 'absolute',
-                            top: '100%',
                             right: openFromLeft ? '0' : 'auto',
                             left: openFromLeft ? 'auto' : '0',
-                            zIndex: 1,
-                            width: '320px',
-                            backgroundColor: '#fff',
-                            borderRadius: '6px',
-                            boxShadow: '0 2px 2px 0 rgba(60,64,67,.2), 0 1px 6px 2px rgba(60,64,67,.1)',
-                            fontWeight: 500,
-                            fontSize: '14px',
-                            color: '#000',
-                            userSelect: 'none',
-                            cursor: 'pointer',
                         }}>
                         {
                             options.map((e, i) => {
                                 return (
                                     <div
+                                        className={styles.folderOptionsMenus}
                                         style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            padding: '5px 20px',
                                             borderBottom: i != (options.length - 1) ? '1px solid #e8eaed' : "",
                                         }}
                                     >
                                         {e.map((item, index) => {
                                             return (
                                                 <div
+                                                    className={styles.folderOptionsMenu}
                                                     onClick={() => {
                                                         item.action && folderOptionAction(item.action)
-                                                    }}
-                                                    style={{
-                                                        display: 'flex',
-                                                        justifyContent: 'space-between',
-                                                        alignItems: 'center',
-                                                        width: '100%',
-                                                        backgroundColor: '#fff',
-                                                        borderRadius: '15px',
-                                                        height: "32px"
                                                     }}>
-                                                    <div style={{
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                    }}>
-                                                        <div style={{
-                                                            width: '20px',
-                                                            height: '20px',
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                        }}>
+                                                    <div
+                                                        className={styles.folderOptionsMenuLeft}>
+                                                        <div
+                                                            className={styles.folderOptionsMenuIcon}>
                                                             {item.icon && <item.icon size={20} />}
                                                         </div>
-                                                        <div style={{
-                                                            marginLeft: '12px',
-                                                            fontSize: '13px',
-                                                            fontWeight: 400,
-
-                                                        }}>{item.name}</div>
+                                                        <div
+                                                            className={styles.folderOptionsMenuName}>
+                                                            {item.name}
+                                                        </div>
                                                     </div>
                                                     {
-                                                        item.arrow && <div style={{
-                                                            display: "flex",
-                                                            alignItems: 'center'
-                                                        }}>
+                                                        item.arrow && <div
+                                                            className={styles.folderOptionsMenuArrowIcon}>
                                                             <MdOutlineKeyboardArrowRight size={20} color={"#1d1d1d9f"} />
                                                         </div>
                                                     }

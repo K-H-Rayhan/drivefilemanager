@@ -1,0 +1,69 @@
+.folderOptions {
+    position: relative;
+
+    .folderOptionsBackground {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: transparent;
+        z-index: 1;
+    }
+
+    .folderOptionsModal {
+        padding-block: 8px;
+        position: absolute;
+        top: 100%;
+        z-index: 1;
+        width: 320px;
+        background-color: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 2px 0 rgba(60, 64, 67, .2), 0 1px 6px 2px rgba(60, 64, 67, .1);
+        font-weight: 500;
+        font-size: 14px;
+        color: #000;
+        user-select: none;
+        cursor: pointer;
+
+        .folderOptionsMenus {
+            display: flex;
+            flex-direction: column;
+            padding: 5px 20px;
+
+            .folderOptionsMenu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                background-color: #fff;
+                border-radius: 15px;
+                height: 32px;
+
+                .folderOptionsMenuLeft {
+                    display: flex;
+                    align-items: center;
+
+                    .folderOptionsMenuIcon {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .folderOptionsMenuName {
+                        margin-left: 12px;
+                        font-size: 13px;
+                        font-weight: 400;
+                    }
+                }
+
+                .folderOptionsMenuArrowIcon {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+
+}
