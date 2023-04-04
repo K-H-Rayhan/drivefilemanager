@@ -151,6 +151,7 @@ function FilesCardButton({
                 file={file}
                 action={actionType} handleClose={() => {
                     setActionType(null);
+                    setOpenFolderOptions(!openFolderOptions)
                 }} />}
         </div >
     )

@@ -131,6 +131,7 @@ function CreateNewModal({
                         }}>{edit ? "Edit" : "New"} {action.split("_")[1].toLowerCase()}</div>
                         <input
                             ref={inputRef}
+                            defaultValue={file?.name}
                             type="text"
                             required
                             placeholder={`Untitled ${action.split("_")[1].toLowerCase()}`}
