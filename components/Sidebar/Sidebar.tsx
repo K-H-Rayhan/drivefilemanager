@@ -17,7 +17,7 @@ function Sidebar({ }: Props) {
 
     return (
         <div style={{
-            maxWidth: '257px',
+            width: '257px',
             height: '100vh',
             paddingInline: '10px',
             color: '#000',
