@@ -95,7 +95,8 @@ function FilesCardButton({
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
                         display: 'block',
-                        width: '120px',
+                        width: '84px',
+                        cursor: 'default'
                     }}>{file.name}</span>
                 </div>
                 <IconButton icon={BsThreeDotsVertical} size={20} />

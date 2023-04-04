@@ -58,14 +58,7 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                 <div>
                     {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} color={"#444746"} />}
                 </div>
-                <div style={{
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    maxWidth: '135px',
-                }}>
-                    {storedFolderData.name} {storedFolderData.name}
-                </div>
+                {storedFolderData.name}
             </Link>
         </div>
     )
