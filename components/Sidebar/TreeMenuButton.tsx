@@ -44,7 +44,7 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                         }} />}
             </div>
             <Link href={route == "" ? "/" : route}
-                className={styles.TreeMenuButtonLink}
+                className={styles.treeMenuButtonLink}
             >
                 {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} color={"#444746"} />}
                 {storedFolderData.name}
