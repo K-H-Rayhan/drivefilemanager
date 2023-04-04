@@ -1,5 +1,5 @@
-import React from 'react'
-import { Selected } from './Viewer'
+import React, { useContext } from 'react'
+import { FILETYPE, Selected } from './Viewer'
 import {
     MdPersonAddAlt,
     MdOutlineFileDownload,
@@ -12,6 +12,8 @@ import {
     BsThreeDotsVertical,
 } from 'react-icons/bs'
 import { HiOutlineTrash } from 'react-icons/hi'
+import IconButton from './IconButton'
+import { MenuContext } from '@/context/MenuContext'
 
 type Props = {
     selected: Selected[]
@@ -24,20 +26,39 @@ function Editor({
     allSelected,
     toggleSelectAll
 }: Props) {
+    const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext)
+
+    const editAction = (action: string) => {
+        switch (action) {
+            case "DELETE":
+                selected.forEach((e) => {
+                    if (e.type == FILETYPE.FOLDER) {
+                        handleDeleteFolder(e.id)
+                    } else {
+                        // handleDeleteFile(e.id)
+                    }
+                })
+                break;
+            case "OPEN_MENU":
+                console.log("open menu")
+                break;
+        }
+    }
+
     return (
         <div style={{
             minHeight: '40px',
             display: 'flex',
             alignItems: 'center',
-            gap: '24px',
+            gap: '8px',
         }}>
             {!allSelected ?
-                <MdOutlineIndeterminateCheckBox size={20} color={"#1d1d1d"} onClick={(e) => {
+                <IconButton icon={MdOutlineIndeterminateCheckBox} size={20} onClick={(e) => {
                     e.stopPropagation()
                     toggleSelectAll()
-                }} />
+                }} color={"#1d1d1d"} />
                 :
-                <MdCheckBox size={20} color={"#1d1d1d"} />
+                <IconButton icon={MdCheckBox} size={20} color={"#1d1d1d"} />
             }
             <div style={{
                 color: '#1d1d1d',
@@ -46,25 +67,24 @@ function Editor({
             </div>
             {otherMenus.map((e, i) => {
                 const Icon = e.icon
+
+                if (i == 4 && selected.length > 1) {
+                    return
+                }
                 return (
-                    <div key={i}>
-                        <Icon size={20} color={"#1d1d1d"} />
-                    </div>
+                    <span key={i} onClick={(element) => {
+                        element.stopPropagation()
+                        e.action && editAction(e.action)
+                    }}>
+                        <IconButton icon={Icon} size={20} color={"#1d1d1d"} />
+                    </span>
                 )
             })}
-        </div>
+        </div >
     )
 }
 
 export default Editor
-
-// MdPersonAddAlt
-// MdOutlineFileDownload
-// MdDriveFileMoveOutline
-
-// BsTrash
-// MdLink
-// BsThreeDotsVertical
 
 const otherMenus = [
     {

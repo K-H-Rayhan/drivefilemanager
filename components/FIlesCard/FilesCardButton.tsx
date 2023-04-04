@@ -4,6 +4,8 @@ import { MdFolder, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 import { FILETYPE, Selected } from '../Ui/Viewer'
 import { ActionType } from '../Ui/CreateNewModal'
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import IconButton from '../Ui/IconButton'
 
 
 type Props = {
@@ -59,37 +61,39 @@ function FilesCardButton({
             <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                padding: '6px 12px',
+                justifyContent: "space-between",
+                padding: '4px 12px',
                 gap: 8
             }}>
-                <div
-                    onClick={(e) => {
-                        e.stopPropagation()
-                        handleFileSelect(file.id, type)
-                    }}
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        height: '36px',
-                        borderRadius: '50%',
-                        width: '36px',
-                        cursor: 'pointer',
-                    }}>
-                    {selecting || isSelected ?
-                        <>
-                            {
-                                isSelected ?
-                                    <MdCheckBox size={20} />
-                                    :
-                                    <MdCheckBoxOutlineBlank size={20} />
-                            }
-                        </>
-                        : type == FILETYPE.FOLDER ? <MdFolder size={20} /> : <Icon size={20} />}
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                }}>
+                    <div
+                        style={{
+                            paddingRight: '5px'
+                        }}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            handleFileSelect(file.id, type)
+                        }}
+                    >
+                        {selecting || isSelected ?
+                            <>
+                                {
+                                    isSelected ?
+                                        <IconButton icon={MdCheckBox} size={20} />
+                                        :
+                                        <IconButton icon={MdCheckBoxOutlineBlank} size={20} />
+                                }
+                            </>
+                            : type == FILETYPE.FOLDER ? <IconButton icon={MdFolder} size={20} /> : <IconButton icon={Icon} size={20} />}
+                    </div>
+                    <span style={{
+                        fontSize: 15,
+                    }}>{file.name}</span>
                 </div>
-                <span style={{
-                    fontSize: 15,
-                }}>{file.name}</span>
+                <IconButton icon={BsThreeDotsVertical} size={20} />
             </div>
             {type == FILETYPE.FILE && <div style={{
                 flex: 1,
