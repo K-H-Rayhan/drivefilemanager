@@ -1,5 +1,6 @@
 import React from 'react'
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import styles from '../../styles/Base.module.scss'
 
 
 type Props = {
@@ -24,39 +25,15 @@ function AddNewOptionsButton({
       onClick={() => {
         handleClick && handleClick()
       }}
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%',
-        backgroundColor: '#fff',
-        borderRadius: '15px',
-        height: "32px"
-      }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-      }}>
-
-        <div style={{
-          width: '20px',
-          height: '20px',
-          display: 'flex',
-          alignItems: 'center',
-        }}>
+      className={styles.addNewOptionsButton}>
+      <div>
+        <div>
           {Icon && <Icon size={20} />}
         </div>
-        <div style={{
-          marginLeft: '12px',
-          fontSize: '13px',
-          fontWeight: 400,
-        }}>{item.name}</div>
+        <div>{item.name}</div>
       </div>
       {
-        i == 2 && <div style={{
-          display: "flex",
-          alignItems: 'center'
-        }}>
+        i == 2 && <div >
           <MdOutlineKeyboardArrowRight size={20} color={"#1d1d1d9f"} />
         </div>
       }

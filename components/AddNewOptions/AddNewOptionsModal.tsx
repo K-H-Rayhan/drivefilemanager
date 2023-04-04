@@ -3,6 +3,7 @@ import { MdOutlineCreateNewFolder, MdUploadFile, MdOutlineKeyboardArrowRight, Md
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 import AddNewOptionsButton from './AddNewOptionsButton'
 import CreateNewModal, { ActionType } from '../Ui/CreateNewModal'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     open: boolean,
@@ -22,49 +23,29 @@ function AddNewOptionsModal({
     const [actionType, setActionType] = React.useState<ActionType | null>(null)
     return (
         <>{open && <div
+            className={styles.addNewOptionsModal}
         >
-            <div onClick={() => {
-                handleClose()
-            }}
+            <div
+                className={styles.addNewOptionsModalBackground}
+                onClick={() => {
+                    handleClose()
+                }}
                 style={{
-                    position: 'fixed',
-                    top: '0',
-                    left: '0',
-                    width: '100%',
-                    height: '100vh',
                     backgroundColor: backdrop ? 'rgba(0,0,0,.1)' : 'transparent',
                 }}></div>
             <div
+                className={styles.addNewOptionsModalButtons}
                 onClick={(e) => {
                     e.stopPropagation()
-                }}
-                style={{
-                    paddingBlock: '16px',
-                    position: 'absolute',
-                    top: '0',
-                    left: '0',
-                    zIndex: 1,
-                    width: '320px',
-                    height: '320px',
-                    backgroundColor: '#fff',
-                    borderRadius: '6px',
-                    boxShadow: '0 2px 2px 0 rgba(60,64,67,.2), 0 1px 6px 2px rgba(60,64,67,.1)',
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    color: '#000',
-                    userSelect: 'none',
-                    overflow: 'hidden',
-                    overflowY: 'auto',
-                    cursor: 'pointer',
                 }}>
                 {
                     options.map((option, i) => {
                         return (
-                            <div key={i} style={{
-                                borderTop: i != 0 ? '1px solid #dadce0' : 'none',
-                                paddingInline: '24px',
-                                paddingBlock: '5px',
-                            }}>
+                            <div key={i}
+                                className={styles.addNewOptionsModalButtonOptions}
+                                style={{
+                                    borderTop: i != 0 ? '1px solid #dadce0' : 'none',
+                                }}>
                                 {
                                     option.map((item: OptionButtonProps, index) => {
                                         return (

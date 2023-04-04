@@ -1,6 +1,6 @@
 import React from 'react'
 import AddNewOptionsModal from './AddNewOptionsModal'
-
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     children: React.ReactNode,
@@ -17,12 +17,9 @@ function AddNewOptions({ children, backdrop = false }: Props) {
 
     return (
         <div
+            className={styles.addNewOptions}
             onClick={() => {
                 setShow(!show)
-            }}
-            style={{
-                position: 'relative',
-                width: 'fit-content',
             }}>
             <div>{children}</div>
             <AddNewOptionsModal open={show} backdrop={backdrop} handleClose={() => {

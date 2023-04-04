@@ -1,0 +1,27 @@
+.addNewOptionsButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 15px;
+    height: 32px;
+
+    div {
+        display: flex;
+        align-items: center;
+
+        div:first-child {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        div:last-child {
+            margin-left: 12px;
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+}
