@@ -1,0 +1,20 @@
+.TreeMenuButton {
+    display: flex;
+    align-items: center;
+    border-radius: 1.5rem;
+    height: 32px;
+
+    .TreeMenuButtonToggleIcon {
+        display: flex;
+        align-items: center;
+    }
+
+    .TreeMenuButtonLink {
+        all: unset;
+        cursor: pointer;
+        font-size: 13px;
+        gap: 12px;
+        display: flex;
+        align-items: center;
+    }
+}

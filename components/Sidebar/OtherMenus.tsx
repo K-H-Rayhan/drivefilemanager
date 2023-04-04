@@ -1,5 +1,6 @@
 import React from 'react'
 import { IoMdArrowDropright } from 'react-icons/io'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     icon: React.FC<{ size: number }>,
@@ -17,25 +18,15 @@ function OtherMenus({
     const Icon = icon
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-            }}
-        >
+        <div className={styles.otherMenus}>
             {showarrow && <IoMdArrowDropright style={{
             }} />}
             <div style={{
-                paddingRight: "14px",
-                display: 'flex',
-                alignItems: 'center',
                 marginLeft: showarrow ? '0px' : '14px',
             }}>
                 <Icon size={size} />
             </div>
-            <span style={{
-                fontSize: '13px',
-            }}>
+            <span>
                 {name}
             </span>
         </div>

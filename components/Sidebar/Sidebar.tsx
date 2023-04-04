@@ -9,6 +9,8 @@ import AddNewButton from './AddNewButton'
 import OtherMenus from './OtherMenus'
 import ShowStorageStat from './ShowStorageStat'
 import { MenuContext } from '@/context/MenuContext'
+import styles from '../../styles/Base.module.scss'
+
 
 type Props = {}
 
@@ -16,21 +18,10 @@ function Sidebar({ }: Props) {
     const { storedFolderData } = useContext(MenuContext)
 
     return (
-        <div style={{
-            width: '257px',
-            height: '100vh',
-            paddingInline: '10px',
-            color: '#000',
-        }}>
+        <div className={styles.sidebar}>
             <AddNewButton />
             {storedFolderData?.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}
-            <div style={{
-                marginLeft: '10px',
-                marginTop: '10px',
-                gap: '15px',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
+            <div className={styles.treeAlign}>
                 {otherMenus?.map((e, i) => <OtherMenus icon={e.icon} name={e.name} showarrow={i == 0 && true} key={e.name} />)}
                 <ShowStorageStat />
             </div>

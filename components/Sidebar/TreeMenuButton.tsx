@@ -6,6 +6,7 @@ import { MdFolder } from 'react-icons/md'
 import Link from 'next/link'
 import { ResultContext } from '@/context/ResultsContext'
 import { useRouter } from 'next/router'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {
     open: boolean,
@@ -22,19 +23,13 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
 
     return (
         <div
+            className={styles.TreeMenuButton}
             style={{
-                display: 'flex',
-                alignItems: 'center',
                 backgroundColor: ((results?.id == storedFolderData.id) && (router.asPath != "/")) || (router.asPath == "/" && storedFolderData.id == "root") ? '#C2E7FF' : 'unset',
                 padding: depthLevel > 0 ? '7px 20px' : '10px 10px',
-                borderRadius: '1.5rem',
-                height: "32px"
             }}
         >
-            <div style={{
-                display: 'flex',
-                alignItems: 'center',
-            }}>
+            <div className={styles.TreeMenuButtonToggleIcon}>
                 {open ? <IoMdArrowDropright
                     color={"#444746"}
                     style={{
@@ -48,14 +43,9 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                             toggleOpen()
                         }} />}
             </div>
-            <Link href={route == "" ? "/" : route} style={{
-                all: 'unset',
-                cursor: 'pointer',
-                fontSize: '13px',
-                gap: "12px",
-                display: 'flex',
-                alignItems: 'center',
-            }}>
+            <Link href={route == "" ? "/" : route}
+                className={styles.TreeMenuButtonLink}
+            >
                 {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} color={"#444746"} />}
                 {storedFolderData.name}
             </Link>
