@@ -44,7 +44,16 @@ function Viewer({ }: Props) {
         // setSelected([id])
     }
     const handleFileSelect = (id: string, type: FILETYPE) => {
-        // setSelected(() => [...selected, id])
+        console.log(selected);
+        
+        if (!selected.some(e => e.id === id)) {
+            setSelected(() => [...selected, {
+                id,
+                type
+            }])
+        }else{
+            setSelected(() => selected.filter(e => e.id !== id))
+        }
     }
 
     return (

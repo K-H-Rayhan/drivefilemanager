@@ -49,8 +49,7 @@ function FilesCardButton({
                 handleFileClick(file.id, type)
             }}
             style={{
-                padding: "12px 16px",
-                backgroundColor: "#F7F9FC",
+                backgroundColor: isSelected ? "#C2E7FF" : "#F7F9FC",
                 borderRadius: '0.75rem',
                 display: 'flex',
                 flexDirection: 'column',
@@ -59,34 +58,55 @@ function FilesCardButton({
             }>
             <div style={{
                 display: 'flex',
-                gap: 11,
-                paddingBottom: type == FILETYPE.FILE ? "12px" : "0px",
+                alignItems: 'center',
+                padding: '6px 12px',
+                gap: 8
             }}>
-                {selecting || isSelected ?
-                    <>
-                        {
-                            isSelected ? <MdCheckBox size={20} /> :
-                                <MdCheckBoxOutlineBlank size={20} />
-                        }
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '36px',
+                    borderRadius: '50%',
+                    width: '36px',
+                }}>
+                    {selecting || isSelected ?
+                        <>
+                            {
+                                isSelected ? <MdCheckBox
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleFileSelect(file.id, type)
+                                    }}
+                                    size={20}
+                                /> :
+                                    <MdCheckBoxOutlineBlank size={20} onClick={(e) => {
+                                        e.stopPropagation()
+                                        handleFileSelect(file.id, type)
+                                    }} />
+                            }
 
-                    </>
-                    : type == FILETYPE.FOLDER ? <MdFolder size={20} /> : <Icon size={20} />}
+                        </>
+                        : type == FILETYPE.FOLDER ? <MdFolder size={20} /> : <Icon size={20} />}
+                </div>
                 <span style={{
                     fontSize: 15,
                 }}>{file.name}</span>
             </div>
-
-
             {type == FILETYPE.FILE && <div style={{
-                backgroundColor: '#fff',
-                borderRadius: '0.3rem',
-                width: '100%',
                 flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                padding: '0px 9px 9px 9px',
             }}>
-                <Icon size={65} />
+                <div style={{
+                    backgroundColor: '#fff',
+                    borderRadius: '0.3rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: '100%',
+                    justifyContent: 'center',
+                }}>
+                    <Icon size={65} />
+                </div>
             </div>}
         </div >
     )
