@@ -1,33 +1,17 @@
 import React from 'react'
 import { MdOutlineSearch, MdOutlineTune } from 'react-icons/md'
 import IconButton from '../Ui/IconButton'
-
+import styles from "../../styles/Base.module.scss"
 type Props = {}
 
 function SearchBar({ }: Props) {
     return (
-        <div style={{
-            display: 'flex',
-            width: '48%',
-            backgroundColor: '#edf2fc',
-            borderRadius: '1.5rem',
-            alignItems: 'center',
-            paddingInline: "5px"
-        }}>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                width: '100%',
-                paddingInline: '4px',
-            }}>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                }}>
+        <div 
+        className={styles.searchBar}>
+            <div>
+                <div>
                     <IconButton icon={MdOutlineSearch} />
-                    <input type="text" placeholder='Search in Drive' style={{
-                        all: 'unset',
-                    }} />
+                    <input type="text" placeholder='Search in Drive' />
                 </div>
                 <IconButton icon={MdOutlineTune} />
             </div>

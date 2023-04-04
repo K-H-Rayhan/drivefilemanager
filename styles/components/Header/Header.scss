@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    padding: 8px;
+    height: 64px;
+    width: 100%;
+
+    .headerIcon {
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        min-width: 247px;
+        margin-bottom: 2px;
+
+        div {
+            margin-left: 8px;
+            font-size: 21px;
+        }
+    }
+}
