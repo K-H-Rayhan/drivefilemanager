@@ -28,6 +28,7 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                 backgroundColor: ((results?.id == storedFolderData.id) && (router.asPath != "/")) || (router.asPath == "/" && storedFolderData.id == "root") ? '#C2E7FF' : 'unset',
                 padding: depthLevel > 0 ? '7px 20px' : '10px 10px',
                 borderRadius: '1.5rem',
+                height: "32px"
             }}
         >
             <div style={{
@@ -55,9 +56,7 @@ function TreeMenuButton({ open, toggleOpen, route, router, depthLevel, storedFol
                 display: 'flex',
                 alignItems: 'center',
             }}>
-                <div>
-                    {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} color={"#444746"} />}
-                </div>
+                {depthLevel == 0 ? <FiHardDrive size={18} /> : <MdFolder size={20} color={"#444746"} />}
                 {storedFolderData.name}
             </Link>
         </div>
