@@ -1,5 +1,5 @@
 import { File, FolderTree } from '@/types/TreeNodeType'
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdFolder, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 import { FILETYPE, Selected } from '../Ui/Viewer'
 import { ActionType } from '../Ui/CreateNewModal'
@@ -7,6 +7,8 @@ import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import IconButton from '../Ui/IconButton'
 import FolderOptions from '../Ui/FolderOptions'
+import { MenuContext } from '@/context/MenuContext'
+import { ResultContext } from '@/context/ResultsContext'
 
 
 type Props = {
@@ -27,6 +29,9 @@ function FilesCardButton({
     const [selecting, setSelecting] = React.useState(false)
     const isSelected = selected.some((e) => e.id === file.id)
     const [openFolderOptions, setOpenFolderOptions] = React.useState(false)
+    const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext)
+    const { results } = useContext(ResultContext)
+
     const getIcon = (type: ActionType) => {
         switch (type) {
             case ActionType.CREATE_DOC:
@@ -100,11 +105,24 @@ function FilesCardButton({
                         cursor: 'default'
                     }}>{file.name}</span>
                 </div>
-                <FolderOptions openFolderOptions={openFolderOptions} handleFolderOptions={() => {
-                    setSelecting(false)
-                    setOpenFolderOptions(!openFolderOptions)
-                }}>
-                    <IconButton icon={BsThreeDotsVertical} size={20} />
+                <FolderOptions openFolderOptions={openFolderOptions}
+                    handleRemove={() => {
+                        if ((file as File).type) {
+                            handleDeleteFolder(file.id)
+                        } else {
+                            handleDeleteFile(file.id, results.id)
+                        }
+                    }}
+                    handleRename={() => {
+                        console.log("rename")
+                    }}
+                    handleFolderOptions={() => {
+                        if (selected.length < 1) {
+                            setSelecting(false)
+                            setOpenFolderOptions(!openFolderOptions)
+                        }
+                    }}>
+                    <IconButton icon={BsThreeDotsVertical} size={16} color={selected.length > 0 ? "#1d1d1d5f" : "'#1d1d1d'"} />
                 </FolderOptions>
             </div>
             {type == FILETYPE.FILE && <div style={{

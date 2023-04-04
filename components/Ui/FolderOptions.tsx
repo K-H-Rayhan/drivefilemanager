@@ -19,16 +19,31 @@ type Props = {
     children: React.ReactNode
     openFolderOptions: boolean
     handleFolderOptions: () => void
+    handleRemove: () => void
+    handleRename: () => void
 }
 
 function FolderOptions({
     children,
     openFolderOptions,
-    handleFolderOptions
+    handleFolderOptions,
+    handleRemove,
+    handleRename
 }: Props) {
     const modalPos = React.useRef<HTMLDivElement>(null)
     // get modalpos from screen
     const [openFromLeft, setOpenFromLeft] = useState(false);
+
+    const folderOptionAction = (action: string) => {
+        switch (action) {
+            case 'RENAME':
+                handleRename()
+                break;
+            case 'REMOVE':
+                handleRemove()
+                break;
+        }
+    }
 
     return (
         <div
@@ -101,7 +116,7 @@ function FolderOptions({
                                             return (
                                                 <div
                                                     onClick={() => {
-
+                                                        item.action && folderOptionAction(item.action)
                                                     }}
                                                     style={{
                                                         display: 'flex',

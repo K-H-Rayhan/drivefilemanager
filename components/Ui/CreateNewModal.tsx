@@ -17,14 +17,18 @@ type Props = {
     action: ActionType
     handleClose: () => void
     backdrop?: boolean
+    edit?: boolean
+    id?: string
 }
 
 function CreateNewModal({
     action,
     handleClose,
     backdrop = true,
+    edit = false,
+    id = ""
 }: Props) {
-    const { handleAddFolder, handleAddFile } = useContext(MenuContext)
+    const { handleAddFolder, handleAddFile, handleEditFolder } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
     const [folderName, setFolderName] = React.useState<string>('')
     const inputRef = React.useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>
@@ -59,6 +63,10 @@ function CreateNewModal({
                 return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_SLIDE, results.id)
             case ActionType.CREATE_FORM:
                 return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_FORM, results.id)
+            case ActionType.EDIT_FILE:
+                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_FORM, results.id)
+            case ActionType.EDIT_FOLDER:
+                return inputRef.current.value.length > 0 && handleEditFolder(id, inputRef.current.value)
             default:
                 return 'folder'
         }

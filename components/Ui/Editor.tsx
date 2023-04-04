@@ -43,9 +43,6 @@ function Editor({
                 })
                 clearSelected()
                 break;
-            case "OPEN_MENU":
-                console.log("open menu")
-                break;
         }
     }
 
@@ -107,9 +104,5 @@ const otherMenus = [
     },
     {
         icon: MdLink
-    },
-    {
-        icon: BsThreeDotsVertical,
-        action: "OPEN_MENU"
     },
 ]
