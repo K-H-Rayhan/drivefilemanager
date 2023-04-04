@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { RiArrowRightSLine } from 'react-icons/ri'
+import styles from '../../styles/Base.module.scss'
 
 type Props = {}
 
@@ -13,17 +14,8 @@ function BreadCrumb({ }: Props) {
     const paths = [...router.asPath.split("/").map(e => capitalizeFirstLetter(e))]
     paths[0] = "My Drive"
     return (
-        <div style={{
-            fontSize: '18px',
-            display: 'flex',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-        }}>
-            {paths.map((e, i) => <span style={{
-                display: 'flex',
-                alignItems: 'center',
-                fontSize: '20px',
-            }} key={Math.random()}>
+        <div className={styles.breadCrumb}>
+            {paths.map((e, i) => <span key={Math.random()}>
                 {i != 0 && <RiArrowRightSLine
                     size={22}
                     style={{

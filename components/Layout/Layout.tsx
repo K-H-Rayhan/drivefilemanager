@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import { Open_Sans } from 'next/font/google'
 import Header from '../Header/Header'
 import BreadCrumb from './BreadCrumb'
+import styles from '../../styles/Base.module.scss'
 
 const font = Open_Sans({ subsets: ['latin'] })
 
@@ -22,17 +23,12 @@ function Layout({
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
-            <div style={{
-                display: 'flex',
-            }}>
+            <div
+                className={styles.layout}>
                 <Sidebar />
-                <div style={{
-                    flex: 1,
-                    display: 'flex',
-                    backgroundColor: '#fff',
-                    borderTopLeftRadius: '15px',
-                    padding: '20px',
-                }}>
+                <div
+                    className={styles.content}
+                >
                     {children}
                 </div>
             </div>
