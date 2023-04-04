@@ -54,6 +54,7 @@ function Editor({
             minHeight: '40px',
             display: 'flex',
             alignItems: 'center',
+            flexWrap: 'wrap',
             gap: '8px',
         }}>
             {!allSelected ?

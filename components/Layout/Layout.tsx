@@ -26,10 +26,10 @@ function Layout({
                 display: 'flex',
             }}>
                 <Sidebar />
-                <div className='' style={{
+                <div style={{
+                    flex: 1,
+                    display: 'flex',
                     backgroundColor: '#fff',
-                    minHeight: '100vh',
-                    width: '100%',
                     borderTopLeftRadius: '15px',
                     padding: '20px',
                 }}>

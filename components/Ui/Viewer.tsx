@@ -69,13 +69,13 @@ function Viewer({ }: Props) {
         <div
             onClick={clearSelected}
             key={storedFolderData[0] as any} style={{
+                flex: 1,
             }}>
             {results.id ? <>
                 <>
                     <div style={{
                         display: 'flex',
                         justifyContent: 'space-between',
-                        maxHeight: '40px',
                     }}>
 
                         {selected.length > 0 ? <>
@@ -97,8 +97,8 @@ function Viewer({ }: Props) {
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
-                    height: "100%",
-                    overflowY: 'auto',
+                    overflow: 'auto',
+                    height: 'calc(100vh - 140px)',
                 }}>
                     {results?.children?.length > 0 &&
                         <FilesCard
@@ -116,8 +116,8 @@ function Viewer({ }: Props) {
                             handleFileClick={handleFileClick}
                             handleFileSelect={handleFileSelect}
                         />}
+                    {results?.children?.length < 1 && (!results?.files || results?.files?.length < 1) && <EmptyDirectory />}
                 </div>
-                {results?.children?.length < 1 && (!results?.files || results?.files?.length < 1) && <EmptyDirectory />}
             </>
 
                 : <>
