@@ -20,6 +20,7 @@ function Sidebar({ }: Props) {
             minWidth: '257px',
             height: '100vh',
             paddingInline: '10px',
+            color: '#000',
         }}>
             <AddNewButton />
             {storedFolderData?.map((e: FolderTree) => <TreeMenu storedFolderData={e} depthLevel={0} route={e.slug} key={e.id} />)}

@@ -91,6 +91,11 @@ function FilesCardButton({
                     </div>
                     <span style={{
                         fontSize: 15,
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        display: 'block',
+                        width: '120px',
                     }}>{file.name}</span>
                 </div>
                 <IconButton icon={BsThreeDotsVertical} size={20} />
