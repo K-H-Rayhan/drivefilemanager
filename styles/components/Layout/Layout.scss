@@ -6,6 +6,9 @@
     display: flex;
     background-color: #fff;
     border-top-left-radius: 15px;
-    padding: 20px;
+    padding: 11px 20px;
+    @media #{$media-tablet} {
+      border-top-left-radius: 0px;
+    }
   }
 }
