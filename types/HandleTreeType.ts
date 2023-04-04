@@ -86,3 +86,7 @@ export type EditNode = {
     name: string,
     id: string,
 }
+export type DeleteFile = {
+    id: string,
+    parentId: string,
+}

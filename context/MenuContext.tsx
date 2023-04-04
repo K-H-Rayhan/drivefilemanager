@@ -5,7 +5,8 @@ import {
     HandleTreeAction,
     AddNode,
     EditNode,
-    AddFile
+    AddFile,
+    DeleteFile
 } from '@/types/HandleTreeType'
 import { FolderTree } from "@/types/TreeNodeType";
 import { ActionType } from "@/components/Ui/CreateNewModal";
@@ -117,17 +118,17 @@ const editFile = (id: string, initData: FolderTree[]): FolderTree[] => {
     return newData
 }
 // Delete file from node
-const deleteFile = (id: string, initData: FolderTree[]): FolderTree[] => {
+const deleteFile = (data: DeleteFile, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
         // If delete node id found
-        if (newData[i].children.some(item => item.id == id)) {
+        if (newData[i].id == data.parentId) {
             // Filter out that node
-            newData[i].children = newData[i].children.filter(item => item.id != id)
+            newData[i].files = newData[i].files?.filter(item => item.id != data.id)
             return newData
         }
         if (newData[i].children.length > 0) {
-            deleteFile(id, newData[i].children)
+            deleteFile(data, newData[i].children)
         }
     }
     return newData
@@ -153,8 +154,8 @@ const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): Fold
             return addFile(action.payload, storedFolderData)
         // case "EDIT_FILE":
         //     return editFile(action.payload, storedFolderData)
-        // case "DELETE_FILE":
-        //     return deleteFile(action.payload, storedFolderData)
+        case "DELETE_FILE":
+            return deleteFile(action.payload, storedFolderData)
         default:
             return storedFolderData;
     }

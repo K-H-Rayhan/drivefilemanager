@@ -14,6 +14,7 @@ import {
 import { HiOutlineTrash } from 'react-icons/hi'
 import IconButton from './IconButton'
 import { MenuContext } from '@/context/MenuContext'
+import { ResultContext } from '@/context/ResultsContext'
 
 type Props = {
     selected: Selected[]
@@ -27,7 +28,7 @@ function Editor({
     toggleSelectAll
 }: Props) {
     const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext)
-
+    const { results } = useContext(ResultContext)
     const editAction = (action: string) => {
         switch (action) {
             case "DELETE":
@@ -35,7 +36,7 @@ function Editor({
                     if (e.type == FILETYPE.FOLDER) {
                         handleDeleteFolder(e.id)
                     } else {
-                        // handleDeleteFile(e.id)
+                        handleDeleteFile(e.id, results.id)
                     }
                 })
                 break;
