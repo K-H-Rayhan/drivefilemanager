@@ -3,13 +3,26 @@
   padding: 8px;
   height: 64px;
   width: 100%;
-
+  justify-content: space-between;
+  @media #{$media-tablet} {
+    padding: 10px 20px;
+  }
+  .hamburgerMenu {
+    display: none;
+    @media #{$media-tablet} {
+      display: flex;
+      align-items: center;
+    }
+  }
   .headerIcon {
     padding: 16px;
     display: flex;
     align-items: center;
     min-width: 247px;
-    margin-bottom: 2px;
+
+    @media #{$media-tablet} {
+      display: none;
+    }
 
     div {
       margin-left: 8px;

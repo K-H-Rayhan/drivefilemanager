@@ -4,20 +4,21 @@
   background-color: #edf2fc;
   border-radius: 1.5rem;
   align-items: center;
-  padding-inline: 5px;
+  padding-inline: 10px;
+  height: 46px;
+  justify-content: space-between;
+
+  @media #{$media-tablet} {
+    width: 100%;
+    margin-left: 15px;
+  }
 
   div {
     display: flex;
-    width: 100%;
-    padding-inline: 4px;
+    align-items: center;
+  }
 
-    div {
-      display: flex;
-      align-items: center;
-    }
-
-    input {
-      all: unset;
-    }
+  input {
+    all: unset;
   }
 }

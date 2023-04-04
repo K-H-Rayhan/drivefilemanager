@@ -12,12 +12,10 @@ function SearchBar({}: Props) {
   return (
     <div className={styles.searchBar}>
       <div>
-        <div>
-          <IconButton icon={MdOutlineSearch} />
-          <input type="text" placeholder="Search in Drive" />
-        </div>
-        <IconButton icon={MdOutlineTune} />
+        <IconButton icon={MdOutlineSearch} />
+        <input type="text" placeholder="Search in Drive" />
       </div>
+      <IconButton icon={MdOutlineTune} />
     </div>
   );
 }
