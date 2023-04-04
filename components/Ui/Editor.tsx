@@ -41,12 +41,12 @@ function Editor({
                         handleDeleteFile(e.id, results.id)
                     }
                 })
+                clearSelected()
                 break;
             case "OPEN_MENU":
                 console.log("open menu")
                 break;
         }
-        clearSelected()
     }
 
     return (
