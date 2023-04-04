@@ -6,6 +6,7 @@ import { ActionType } from '../Ui/CreateNewModal'
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import IconButton from '../Ui/IconButton'
+import FolderOptions from '../Ui/FolderOptions'
 
 
 type Props = {
@@ -25,7 +26,7 @@ function FilesCardButton({
 }: Props) {
     const [selecting, setSelecting] = React.useState(false)
     const isSelected = selected.some((e) => e.id === file.id)
-
+    const [openFolderOptions, setOpenFolderOptions] = React.useState(false)
     const getIcon = (type: ActionType) => {
         switch (type) {
             case ActionType.CREATE_DOC:
@@ -99,7 +100,12 @@ function FilesCardButton({
                         cursor: 'default'
                     }}>{file.name}</span>
                 </div>
-                <IconButton icon={BsThreeDotsVertical} size={20} />
+                <FolderOptions openFolderOptions={openFolderOptions} handleFolderOptions={() => {
+                    setSelecting(false)
+                    setOpenFolderOptions(!openFolderOptions)
+                }}>
+                    <IconButton icon={BsThreeDotsVertical} size={20} />
+                </FolderOptions>
             </div>
             {type == FILETYPE.FILE && <div style={{
                 flex: 1,
