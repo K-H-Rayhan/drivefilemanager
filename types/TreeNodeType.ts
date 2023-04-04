@@ -3,7 +3,7 @@ import { ActionType } from "@/components/Ui/CreateNewModal";
 export type File = {
     name: string;
     id: string;
-    type: ActionType;
+    type?: ActionType;
 };
 
 export type FolderTree = {

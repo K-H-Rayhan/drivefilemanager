@@ -8,7 +8,7 @@ export type HandleTree = {
     handleEditFolder: (name: string, id: string) => void,
     handleDeleteFolder: (id: string) => void,
     handleAddFile: (name: string, type: ActionType, parentId: string) => void,
-    handleEditFile: (name: string, id: string, parentId: string) => void,
+    handleEditFile: (id: string, name: string, parentId: string) => void,
     handleDeleteFile: (id: string, parentId: string) => void,
 }
 
@@ -88,5 +88,10 @@ export type EditNode = {
 }
 export type DeleteFile = {
     id: string,
+    parentId: string,
+}
+export type EditFile = {
+    id: string,
+    name: string,
     parentId: string,
 }

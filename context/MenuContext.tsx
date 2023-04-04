@@ -6,7 +6,8 @@ import {
     AddNode,
     EditNode,
     AddFile,
-    DeleteFile
+    DeleteFile,
+    EditFile
 } from '@/types/HandleTreeType'
 import { FolderTree } from "@/types/TreeNodeType";
 import { ActionType } from "@/components/Ui/CreateNewModal";
@@ -102,17 +103,28 @@ const addFile = (data: AddFile, initData: FolderTree[]): FolderTree[] => {
     return newData
 }
 // Edit file from node
-const editFile = (id: string, initData: FolderTree[]): FolderTree[] => {
+const editFile = (data: EditFile, initData: FolderTree[]): FolderTree[] => {
     const newData = [...initData]
     for (let i = 0; i < newData.length; i++) {
-        // If delete node id found
-        if (newData[i].children.some(item => item.id == id)) {
+        // If edit node id found
+        if (newData[i].id == data.parentId) {
             // Filter out that node
-            newData[i].children = newData[i].children.filter(item => item.id != id)
+            if (newData[i].files) {
+                newData[i].files = newData[i].files?.map(item => {
+                    if (item.id == data.id) {
+                        return {
+                            ...item,
+                            name: data.name,
+                            id: data.id,
+                        }
+                    }
+                    return item
+                })
+            }
             return newData
         }
         if (newData[i].children.length > 0) {
-            editFile(id, newData[i].children)
+            editFile(data, newData[i].children)
         }
     }
     return newData
@@ -152,8 +164,8 @@ const reducer = (storedFolderData: FolderTree[], action: HandleTreeAction): Fold
             return deleteNode(action.payload.id, storedFolderData)
         case "ADD_FILE":
             return addFile(action.payload, storedFolderData)
-        // case "EDIT_FILE":
-        //     return editFile(action.payload, storedFolderData)
+        case "EDIT_FILE":
+            return editFile(action.payload, storedFolderData)
         case "DELETE_FILE":
             return deleteFile(action.payload, storedFolderData)
         default:

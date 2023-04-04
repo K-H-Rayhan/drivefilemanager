@@ -1,5 +1,6 @@
 import { MenuContext } from '@/context/MenuContext'
 import { ResultContext } from '@/context/ResultsContext'
+import { File } from '@/types/TreeNodeType'
 import React, { useContext, useEffect } from 'react'
 
 export enum ActionType {
@@ -18,7 +19,7 @@ type Props = {
     handleClose: () => void
     backdrop?: boolean
     edit?: boolean
-    id?: string
+    file?: File
 }
 
 function CreateNewModal({
@@ -26,15 +27,14 @@ function CreateNewModal({
     handleClose,
     backdrop = true,
     edit = false,
-    id = ""
+    file
 }: Props) {
-    const { handleAddFolder, handleAddFile, handleEditFolder } = useContext(MenuContext)
+    const { handleAddFolder, handleAddFile, handleEditFolder, handleEditFile } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
     const [folderName, setFolderName] = React.useState<string>('')
     const inputRef = React.useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>
     const eventEnter = React.useRef<HTMLDivElement>(null)
-
-
+    console.log(file, 'boss');
 
     useEffect(() => {
         inputRef.current?.focus()
@@ -64,9 +64,9 @@ function CreateNewModal({
             case ActionType.CREATE_FORM:
                 return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_FORM, results.id)
             case ActionType.EDIT_FILE:
-                return inputRef.current.value.length > 0 && handleAddFile(inputRef.current.value, ActionType.CREATE_FORM, results.id)
+                return inputRef.current.value.length > 0 && file && handleEditFile(file.id, inputRef.current.value, results.id)
             case ActionType.EDIT_FOLDER:
-                return inputRef.current.value.length > 0 && handleEditFolder(id, inputRef.current.value)
+                return inputRef.current.value.length > 0 && file && handleEditFolder(inputRef.current.value, file.id)
             default:
                 return 'folder'
         }
@@ -128,7 +128,7 @@ function CreateNewModal({
                             fontSize: '24px',
                             fontWeight: 400,
                             color: '#1d1d1d',
-                        }}>New {action.split("_")[1].toLowerCase()}</div>
+                        }}>{edit ? "Edit" : "New"} {action.split("_")[1].toLowerCase()}</div>
                         <input
                             ref={inputRef}
                             type="text"

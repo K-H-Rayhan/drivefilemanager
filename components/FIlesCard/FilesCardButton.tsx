@@ -2,7 +2,7 @@ import { File, FolderTree } from '@/types/TreeNodeType'
 import React, { useContext } from 'react'
 import { MdFolder, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md'
 import { FILETYPE, Selected } from '../Ui/Viewer'
-import { ActionType } from '../Ui/CreateNewModal'
+import CreateNewModal, { ActionType } from '../Ui/CreateNewModal'
 import { FcAddressBook, FcDataSheet, FcPicture, FcNews } from 'react-icons/fc'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import IconButton from '../Ui/IconButton'
@@ -31,6 +31,7 @@ function FilesCardButton({
     const [openFolderOptions, setOpenFolderOptions] = React.useState(false)
     const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext)
     const { results } = useContext(ResultContext)
+    const [actionType, setActionType] = React.useState<ActionType | null>(null)
 
     const getIcon = (type: ActionType) => {
         switch (type) {
@@ -46,7 +47,7 @@ function FilesCardButton({
                 return MdFolder
         }
     }
-    const Icon = getIcon((file as File).type)
+    const Icon = getIcon((file as any).type)
 
     return (
         <div
@@ -108,21 +109,25 @@ function FilesCardButton({
                 <FolderOptions openFolderOptions={openFolderOptions}
                     handleRemove={() => {
                         if ((file as File).type) {
-                            handleDeleteFolder(file.id)
-                        } else {
                             handleDeleteFile(file.id, results.id)
+                        } else {
+                            handleDeleteFolder(file.id)
                         }
                     }}
                     handleRename={() => {
-                        console.log("rename")
+                        if ((file as File).type) {
+                            setActionType(ActionType.EDIT_FILE)
+                        } else {
+                            setActionType(ActionType.EDIT_FOLDER)
+                        }
                     }}
                     handleFolderOptions={() => {
-                        if (selected.length < 1) {
+                        if (selected.length < 2) {
                             setSelecting(false)
                             setOpenFolderOptions(!openFolderOptions)
                         }
                     }}>
-                    <IconButton icon={BsThreeDotsVertical} size={16} color={selected.length > 0 ? "#1d1d1d5f" : "'#1d1d1d'"} />
+                    <IconButton icon={BsThreeDotsVertical} size={16} color={selected.length > 1 ? "#1d1d1d5f" : "#1d1d1d"} />
                 </FolderOptions>
             </div>
             {type == FILETYPE.FILE && <div style={{
@@ -140,6 +145,13 @@ function FilesCardButton({
                     <Icon size={65} />
                 </div>
             </div>}
+
+            {actionType && <CreateNewModal
+                edit={true}
+                file={file}
+                action={actionType} handleClose={() => {
+                    setActionType(null);
+                }} />}
         </div >
     )
 }
