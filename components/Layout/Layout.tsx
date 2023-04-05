@@ -29,7 +29,12 @@ function Layout({ children }: Props) {
         }}
       />
       <div className={styles.layout}>
-        <Sidebar mobile={mobileSideMenu} />
+        <Sidebar
+          mobile={mobileSideMenu}
+          hideMobileMenu={() => {
+            setMobileSideMenu(false);
+          }}
+        />
         <div className={styles.content}>{children}</div>
       </div>
     </div>

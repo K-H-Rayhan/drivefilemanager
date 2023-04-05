@@ -18,46 +18,52 @@ import OtherOptions from "../Header/OtherOptions";
 
 type Props = {
   mobile: boolean;
+  hideMobileMenu: () => void;
 };
 
-function Sidebar({ mobile }: Props) {
+function Sidebar({ mobile, hideMobileMenu }: Props) {
   const { storedFolderData } = useContext(MenuContext);
-  console.log(mobile);
 
   return (
-    <div
-      onBlur={() => {
-        console.log("outman");
-      }}
-      className={` ${styles.sidebar} ${
-        !mobile ? styles.sidebarDesktop : styles.sidebarMobile
-      }`}
-    >
-      <div>
-        <AddNewButton />
-        {storedFolderData?.map((e: FolderTree) => (
-          <TreeMenu
-            storedFolderData={e}
-            depthLevel={0}
-            route={e.slug}
-            key={e.id}
-          />
-        ))}
-        <div className={styles.treeAlign}>
-          {otherMenus?.map((e, i) => (
-            <OtherMenus
-              icon={e.icon}
-              name={e.name}
-              showarrow={i == 0 && true}
-              key={e.name}
+    <div>
+      {mobile && (
+        <div className={styles.sidebarBackdrop} onClick={hideMobileMenu}></div>
+      )}
+      <div
+        className={`${styles.sidebar} ${
+          !mobile ? styles.sidebarDesktop : styles.sidebarMobile
+        }`}
+      >
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          <AddNewButton />
+          {storedFolderData?.map((e: FolderTree) => (
+            <TreeMenu
+              storedFolderData={e}
+              depthLevel={0}
+              route={e.slug}
+              key={e.id}
             />
           ))}
-          <ShowStorageStat />
+          <div className={styles.treeAlign}>
+            {otherMenus?.map((e, i) => (
+              <OtherMenus
+                icon={e.icon}
+                name={e.name}
+                showarrow={i == 0 && true}
+                key={e.name}
+              />
+            ))}
+            <ShowStorageStat />
+          </div>
         </div>
-      </div>
-      <div>
-        {mobile && <HeaderIcon />}
-        {mobile && <OtherOptions />}
+        <div>
+          {mobile && <HeaderIcon />}
+          {mobile && <OtherOptions />}
+        </div>
       </div>
     </div>
   );
