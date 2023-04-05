@@ -16,6 +16,10 @@ import { FolderTree } from "@/types/TreeNodeType";
 import { ActionType } from "@/components/Ui/CreateNewModal";
 const generateSlug = (data: string) => data.replace(/\s/g, "-").toLowerCase();
 
+const uid = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
 // Add node
 const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
   const newData = [...initData];
@@ -28,7 +32,7 @@ const addNode = (data: AddNode, initData: FolderTree[]): FolderTree[] => {
         newData[i].children.push({
           name: data.name,
           slug: slug,
-          id: self.crypto.randomUUID(),
+          id: uid(),
           children: [],
         });
       return newData;
@@ -96,7 +100,7 @@ const addFile = (data: AddFile, initData: FolderTree[]): FolderTree[] => {
       newData[i].files?.push({
         name: data.name,
         type: data.type,
-        id: self.crypto.randomUUID(),
+        id: uid(),
       });
       return newData;
     }

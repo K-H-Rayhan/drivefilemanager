@@ -130,15 +130,6 @@ function Viewer({}: Props) {
                 handleFileSelect={handleFileSelect}
               />
             )}
-            {results?.files && results?.files?.length > 0 && (
-              <FilesCard
-                type={FILETYPE.FILE}
-                selected={selected}
-                data={results.files}
-                handleFileClick={handleFileClick}
-                handleFileSelect={handleFileSelect}
-              />
-            )}
             {results?.children?.length < 1 &&
               (!results?.files || results?.files?.length < 1) && (
                 <EmptyDirectory />
