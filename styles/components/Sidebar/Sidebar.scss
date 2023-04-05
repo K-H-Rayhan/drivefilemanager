@@ -3,7 +3,9 @@
   height: 100vh;
   padding-inline: 10px;
   color: #000;
-
+  @media #{$media-tablet} {
+    display: none;
+  }
   .treeAlign {
     margin-left: 10px;
     margin-top: 10px;
