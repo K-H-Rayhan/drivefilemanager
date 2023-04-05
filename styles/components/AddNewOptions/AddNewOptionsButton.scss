@@ -3,10 +3,12 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background-color: #fff;
-  border-radius: 15px;
   height: 32px;
-
+  padding-inline: 24px;
+  padding-block: 5px;
+  &:hover {
+    background-color: #e3e3e3;
+  }
   div {
     display: flex;
     align-items: center;

@@ -30,7 +30,7 @@
     .folderOptionsMenus {
       display: flex;
       flex-direction: column;
-      padding: 5px 20px;
+      padding-block: 5px;
 
       .folderOptionsMenu {
         display: flex;
@@ -38,8 +38,11 @@
         align-items: center;
         width: 100%;
         background-color: #fff;
-        border-radius: 15px;
         height: 32px;
+        padding-inline: 20px;
+        &:hover {
+          background-color: #e3e3e3;
+        }
 
         .folderOptionsMenuLeft {
           display: flex;
