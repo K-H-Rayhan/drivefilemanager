@@ -28,20 +28,28 @@ function Viewer({}: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const { storedFolderData } = useContext(MenuContext);
   const { results } = useContext(ResultContext);
+
+  // Check if all files are selected
   const allSelected =
     selected.length ==
     results?.children?.length + (results?.files ? results?.files?.length : 0);
+
+  // To suppress hydration warning
   useEffect(() => {
     setLoading(false);
   }, []);
 
+  // Clear selected when results change
   useEffect(() => {
     setSelected([]);
   }, [results]);
+
+  // Clear selected when folder changes
   const clearSelected = () => {
     setSelected([]);
   };
 
+  // Handle file click
   const handleFileClick = (id: string, type: FILETYPE) => {
     setSelected([
       {
@@ -50,6 +58,8 @@ function Viewer({}: Props) {
       },
     ]);
   };
+
+  // Handle file select
   const handleFileSelect = (id: string, type: FILETYPE, selecting = false) => {
     if (!selected.some((e) => e.id === id) || selecting) {
       setSelected((selected) => [
@@ -64,6 +74,7 @@ function Viewer({}: Props) {
     }
   };
 
+  // Select all files and folders
   const toggleSelectAll = () => {
     if (allSelected) {
       return setSelected([]);
@@ -80,6 +91,7 @@ function Viewer({}: Props) {
           handleFileSelect(element.id, FILETYPE.FILE, true);
       });
   };
+  
   return (
     <div
       className={styles.viewer}

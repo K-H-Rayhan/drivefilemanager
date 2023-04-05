@@ -38,6 +38,8 @@ function FilesCardButton({
   const { results } = useContext(ResultContext);
   const [actionType, setActionType] = React.useState<ActionType | null>(null);
   const router = useRouter();
+
+  // Get icon according to file type
   const getIcon = (type: ActionType) => {
     switch (type) {
       case ActionType.CREATE_DOC:
@@ -54,6 +56,7 @@ function FilesCardButton({
   };
   const Icon = getIcon((file as any).type);
 
+  // Handle folder single or double click
   function handleInnerClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     e.stopPropagation();
     clearTimeout(timer);

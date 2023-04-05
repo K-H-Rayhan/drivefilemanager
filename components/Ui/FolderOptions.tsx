@@ -35,9 +35,9 @@ function FolderOptions({
   handleRename,
 }: Props) {
   const modalPos = React.useRef<HTMLDivElement>(null);
-  // get modalpos from screen
   const [openFromLeft, setOpenFromLeft] = useState(false);
 
+  // Folder or File edit options
   const folderOptionAction = (action: string) => {
     switch (action) {
       case "RENAME":
@@ -54,6 +54,8 @@ function FolderOptions({
       onClick={(e) => {
         e.stopPropagation();
         handleFolderOptions();
+
+        // Get ref position from screen and decide if it should open from left or right
         const left = modalPos?.current?.getBoundingClientRect().left || 0;
         const right = modalPos?.current?.getBoundingClientRect().right || 0;
         const viewportWidth =

@@ -114,9 +114,9 @@ const addFile = (data: AddFile, initData: FolderTree[]): FolderTree[] => {
 const editFile = (data: EditFile, initData: FolderTree[]): FolderTree[] => {
   const newData = [...initData];
   for (let i = 0; i < newData.length; i++) {
-    // If edit node id found
+    // If edit node parent id found
     if (newData[i].id == data.parentId) {
-      // Filter out that node
+      // Edit that node
       if (newData[i].files) {
         newData[i].files = newData[i].files?.map((item) => {
           if (item.id == data.id) {
@@ -141,9 +141,9 @@ const editFile = (data: EditFile, initData: FolderTree[]): FolderTree[] => {
 const deleteFile = (data: DeleteFile, initData: FolderTree[]): FolderTree[] => {
   const newData = [...initData];
   for (let i = 0; i < newData.length; i++) {
-    // If delete node id found
+    // If delete node parent id found
     if (newData[i].id == data.parentId) {
-      // Filter out that node
+      // Filter out that file
       newData[i].files = newData[i].files?.filter((item) => item.id != data.id);
       return newData;
     }

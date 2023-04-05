@@ -15,6 +15,7 @@ type Props = {
 };
 
 function Layout({ children }: Props) {
+  // Sidebar for mobile state
   const [mobileSideMenu, setMobileSideMenu] = useState(false);
   return (
     <div className={`${font.className}`}>

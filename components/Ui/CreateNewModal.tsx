@@ -35,16 +35,16 @@ function CreateNewModal({
   const { handleAddFolder, handleAddFile, handleEditFolder, handleEditFile } =
     useContext(MenuContext);
   const { results } = useContext(ResultContext);
-  const [folderName, setFolderName] = React.useState<string>("");
   const inputRef = React.useRef<HTMLInputElement>(
     null
   ) as React.MutableRefObject<HTMLInputElement>;
   const eventEnter = React.useRef<HTMLDivElement>(null);
-  console.log(file, "boss");
 
   useEffect(() => {
+    // Focus on input
     inputRef.current?.focus();
 
+    // Handle enter key
     const handleEnter = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault();
@@ -57,6 +57,7 @@ function CreateNewModal({
     };
   }, []);
 
+  // File or folder modification with switch case
   const modAction = (actionName: ActionType) => {
     switch (actionName) {
       case ActionType.CREATE_FOLDER:
@@ -117,6 +118,7 @@ function CreateNewModal({
     }
   };
 
+  // Handle modification and close modal
   const handleMod = () => {
     modAction(action);
     handleClose();

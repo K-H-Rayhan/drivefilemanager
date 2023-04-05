@@ -32,6 +32,8 @@ function Editor({
 }: Props) {
   const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext);
   const { results } = useContext(ResultContext);
+
+  //  Edit actions
   const editAction = (action: string) => {
     switch (action) {
       case "DELETE":

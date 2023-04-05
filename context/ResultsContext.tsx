@@ -31,6 +31,7 @@ export const initialResultData = {
 const ResultProvider = ({ children }: Props) => {
   const [results, setResults] = useState<FolderTree>(initialResultData);
 
+  // Save the results to the context
   const handleResults = (data: FolderTree) => {
     setResults(data);
   };

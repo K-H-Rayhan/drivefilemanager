@@ -14,6 +14,7 @@ function capitalizeFirstLetter(string: string) {
 
 function BreadCrumb({}: Props) {
   const router = useRouter();
+  // Format the path
   const paths = [
     ...router.asPath.split("/").map((e) => capitalizeFirstLetter(e)),
   ];
