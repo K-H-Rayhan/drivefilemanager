@@ -28,11 +28,7 @@ function EmptyDirectory({}: Props) {
             })}
           </div>
         </div>
-        <img
-          src="https://ssl.gstatic.com/docs/doclist/images/empty_state_my_drive.png"
-          width={96}
-          height={96}
-        />
+        <img src="https://ssl.gstatic.com/docs/doclist/images/empty_state_my_drive.png" />
         <div>
           <div>Microsoft Office files and hundreds more</div>
 

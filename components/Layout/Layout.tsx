@@ -1,6 +1,6 @@
 // Internal imports
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { Open_Sans } from "next/font/google";
 
 // External imports
@@ -15,6 +15,7 @@ type Props = {
 };
 
 function Layout({ children }: Props) {
+  const [mobileSideMenu, setMobileSideMenu] = useState(false);
   return (
     <div className={`${font.className}`}>
       <Head>
@@ -22,9 +23,13 @@ function Layout({ children }: Props) {
         <meta name="description" content="Nextjs is so good" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header
+        toggleMobileMenu={() => {
+          setMobileSideMenu((prev) => !prev);
+        }}
+      />
       <div className={styles.layout}>
-        <Sidebar />
+        <Sidebar mobile={mobileSideMenu} />
         <div className={styles.content}>{children}</div>
       </div>
     </div>

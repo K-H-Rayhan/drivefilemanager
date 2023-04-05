@@ -13,33 +13,51 @@ import AddNewButton from "./AddNewButton";
 import OtherMenus from "./OtherMenus";
 import ShowStorageStat from "./ShowStorageStat";
 import styles from "../../styles/Base.module.scss";
+import HeaderIcon from "../Header/HeaderIcon";
+import OtherOptions from "../Header/OtherOptions";
 
-type Props = {};
+type Props = {
+  mobile: boolean;
+};
 
-function Sidebar({}: Props) {
+function Sidebar({ mobile }: Props) {
   const { storedFolderData } = useContext(MenuContext);
+  console.log(mobile);
 
   return (
-    <div className={styles.sidebar}>
-      <AddNewButton />
-      {storedFolderData?.map((e: FolderTree) => (
-        <TreeMenu
-          storedFolderData={e}
-          depthLevel={0}
-          route={e.slug}
-          key={e.id}
-        />
-      ))}
-      <div className={styles.treeAlign}>
-        {otherMenus?.map((e, i) => (
-          <OtherMenus
-            icon={e.icon}
-            name={e.name}
-            showarrow={i == 0 && true}
-            key={e.name}
+    <div
+      onBlur={() => {
+        console.log("outman");
+      }}
+      className={` ${styles.sidebar} ${
+        !mobile ? styles.sidebarDesktop : styles.sidebarMobile
+      }`}
+    >
+      <div>
+        <AddNewButton />
+        {storedFolderData?.map((e: FolderTree) => (
+          <TreeMenu
+            storedFolderData={e}
+            depthLevel={0}
+            route={e.slug}
+            key={e.id}
           />
         ))}
-        <ShowStorageStat />
+        <div className={styles.treeAlign}>
+          {otherMenus?.map((e, i) => (
+            <OtherMenus
+              icon={e.icon}
+              name={e.name}
+              showarrow={i == 0 && true}
+              key={e.name}
+            />
+          ))}
+          <ShowStorageStat />
+        </div>
+      </div>
+      <div>
+        {mobile && <HeaderIcon />}
+        {mobile && <OtherOptions />}
       </div>
     </div>
   );

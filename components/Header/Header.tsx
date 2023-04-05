@@ -9,12 +9,14 @@ import styles from "../../styles/Base.module.scss";
 import HeaderIcon from "./HeaderIcon";
 import IconButton from "../Ui/IconButton";
 
-type Props = {};
+type Props = {
+  toggleMobileMenu: () => void;
+};
 
-function Header({}: Props) {
+function Header({ toggleMobileMenu }: Props) {
   return (
     <div className={styles.header}>
-      <div className={styles.hamburgerMenu}>
+      <div className={styles.hamburgerMenu} onClick={toggleMobileMenu}>
         <IconButton icon={MdMenu} />
       </div>
       <HeaderIcon />

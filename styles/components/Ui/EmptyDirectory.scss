@@ -11,6 +11,9 @@
     font-size: 32px;
     color: #1f1f1f;
     text-align: center;
+    @media #{$media-tablet} {
+      font-size: 22px;
+    }
   }
 
   .middleAlign {
@@ -18,7 +21,20 @@
     align-items: center;
     gap: 20px;
     color: #1f1f1f;
-
+    img {
+      width: 96px;
+      @media #{$media-tablet} {
+        width: 66px;
+      }
+    }
+    div {
+      div {
+        @media #{$media-tablet} {
+          font-size: 12px;
+          text-align: center;
+        }
+      }
+    }
     .leftIcons {
       float: right;
       display: flex;
@@ -36,5 +52,9 @@
 
   .footerText {
     font-size: 13px;
+    @media #{$media-tablet} {
+      font-size: 11px;
+      text-align: center;
+    }
   }
 }

@@ -3,14 +3,43 @@
   height: 100vh;
   padding-inline: 10px;
   color: #000;
-  @media #{$media-tablet} {
-    display: none;
-  }
+  z-index: 2;
+
   .treeAlign {
     margin-left: 10px;
     margin-top: 10px;
     gap: 15px;
     display: flex;
     flex-direction: column;
+  }
+}
+.sidebarDesktop {
+  @media #{$media-tablet} {
+    display: none;
+  }
+}
+.sidebarMobile {
+  position: fixed;
+  background-color: #f7f9fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 64px);
+  .headerIcon {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 247px;
+    div {
+      margin-left: 8px;
+      font-size: 21px;
+    }
+  }
+  .otherOptions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 }

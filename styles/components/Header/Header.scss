@@ -29,4 +29,14 @@
       font-size: 21px;
     }
   }
+  .otherOptions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    @media #{$media-tablet} {
+      display: none;
+    }
+  }
+  
 }

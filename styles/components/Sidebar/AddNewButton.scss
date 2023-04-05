@@ -15,4 +15,9 @@
   color: #000;
   user-select: none;
   cursor: pointer;
+  @media #{$media-tablet} {
+    width: 90px;
+    height: 46px;
+    border-radius: 12px;
+  }
 }
