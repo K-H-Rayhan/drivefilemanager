@@ -13,6 +13,7 @@ import CreateNewModal, { ActionType } from "../Ui/CreateNewModal";
 import IconButton from "../Ui/IconButton";
 import FolderOptions from "../Ui/FolderOptions";
 import styles from "../../styles/Base.module.scss";
+import { useRouter } from "next/router";
 
 type Props = {
   file: File | FolderTree;
@@ -29,13 +30,14 @@ function FilesCardButton({
   selected,
   type,
 }: Props) {
+  let timer: any;
   const [selecting, setSelecting] = React.useState(false);
   const isSelected = selected.some((e) => e.id === file.id);
   const [openFolderOptions, setOpenFolderOptions] = React.useState(false);
   const { handleDeleteFolder, handleDeleteFile } = useContext(MenuContext);
   const { results } = useContext(ResultContext);
   const [actionType, setActionType] = React.useState<ActionType | null>(null);
-
+  const router = useRouter();
   const getIcon = (type: ActionType) => {
     switch (type) {
       case ActionType.CREATE_DOC:
@@ -52,13 +54,26 @@ function FilesCardButton({
   };
   const Icon = getIcon((file as any).type);
 
+  function handleInnerClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    e.stopPropagation();
+    clearTimeout(timer);
+    if (e.detail === 1) {
+      timer = setTimeout(() => {
+        handleFileClick(file.id, type);
+      }, 100);
+    }
+    if (e.detail === 2) {
+      type == "Folder" &&
+        router.push(`${router.asPath}/${(file as FolderTree).slug}`);
+    }
+  }
+
   return (
     <div
       onMouseEnter={() => setSelecting(true)}
       onMouseLeave={() => setSelecting(false)}
       onClick={(e) => {
-        e.stopPropagation();
-        handleFileClick(file.id, type);
+        handleInnerClick(e);
       }}
       className={styles.filesCardButton}
       style={{
