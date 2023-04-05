@@ -1,14 +1,14 @@
 .TreeMenuButton {
+  border-radius: 1.5rem;
   display: flex;
   align-items: center;
-  border-radius: 1.5rem;
   height: 32px;
+  border-radius: 1.5rem;
 
   .TreeMenuButtonToggleIcon {
     display: flex;
     align-items: center;
   }
-
   .treeMenuButtonLink {
     all: unset;
     cursor: pointer;
@@ -16,5 +16,6 @@
     gap: 12px;
     display: flex;
     align-items: center;
+    min-width: 100%;
   }
 }

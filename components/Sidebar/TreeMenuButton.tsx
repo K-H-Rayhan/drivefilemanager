@@ -31,7 +31,10 @@ function TreeMenuButton({
 
   return (
     <div
-      className={styles.TreeMenuButton}
+      onClick={() => {
+        router.push(route == "" ? "/" : route);
+      }}
+      className={`${styles.TreeMenuButton} treeMenuButtonHover `}
       style={{
         backgroundColor:
           (results?.id == storedFolderData.id && router.asPath != "/") ||
@@ -41,37 +44,41 @@ function TreeMenuButton({
         padding: depthLevel > 0 ? "7px 20px" : "10px 10px",
       }}
     >
-      <div className={styles.TreeMenuButtonToggleIcon}>
+      <style jsx>{`
+        .treeMenuButtonHover:hover {
+          background-color: ${(results?.id != storedFolderData.id &&
+            router.asPath != "/") ||
+          (router.asPath == "/" && storedFolderData.id != "root")
+            ? "rgb(218,220,224,0.6) !important"
+            : ""};
+        }
+      `}</style>
+      <div
+        className={styles.TreeMenuButtonToggleIcon}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleOpen();
+        }}
+      >
         {open ? (
           <IoMdArrowDropright
             color={"#444746"}
             style={{
               transform: "rotate(90deg)",
             }}
-            onClick={() => {
-              toggleOpen();
-            }}
           />
         ) : (
-          <IoMdArrowDropright
-            color={"#444746"}
-            onClick={() => {
-              toggleOpen();
-            }}
-          />
+          <IoMdArrowDropright color={"#444746"} />
         )}
       </div>
-      <Link
-        href={route == "" ? "/" : route}
-        className={styles.treeMenuButtonLink}
-      >
+      <div className={styles.treeMenuButtonLink}>
         {depthLevel == 0 ? (
           <FiHardDrive size={18} />
         ) : (
           <MdFolder size={20} color={"#444746"} />
         )}
         {storedFolderData.name}
-      </Link>
+      </div>
     </div>
   );
 }
